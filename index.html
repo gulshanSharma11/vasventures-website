@@ -1,1292 +1,933 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAS VENTURES Ltd</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-}
-
-body {
-    line-height: 1.6;
-    color: #333;
-    background: #f5f7fa;
-    overflow-x: hidden;
-}
-
-/* Header */
-.header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1); /* semi-transparent */
-    backdrop-filter: blur(10px); /* blur the background */
-    -webkit-backdrop-filter: blur(10px); /* for Safari support */
-    color:  #1a2a6c;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: padding 0.3s, background 0.3s;
-    z-index: 1000;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0 0 12px 12px; /* optional: soft bottom corners */
-}
-
-/* Makes the logo completely white */
-.logo img, .footer-logo img {
-    filter: brightness(0) invert(1);
-}
-
-.header.shrink {
-    padding: 10px 40px;
-    background: #1a2a6c; /* Turns dark blue when you scroll down */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Adds a slightly darker shadow for separation */
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    /* Optional: makes the logo pop against a dark background */
-    border-radius: 8px;
-    font-size: 28px;
-    font-weight: 700;
-    color: #ffd700;
-    letter-spacing: 1px;
-}
-
-.logo img {
-    max-height: 40px;
-    width: auto;
-    object-fit: contain;
-}
-
-
-.nav ul {
-    list-style: none;
-    display: flex;
-}
-
-.nav ul li {
-    margin-left: 30px;
-}
-
-.nav ul li a {
-    color: #ffffff; /* Bright white to pop against the dark background */
-    text-decoration: none; /* Fixed from 'bold' */
-    font-size: 18px; 
-    font-weight: 600; /* Semi-bold for readability */
-    text-transform: uppercase; /* Makes it look more like a modern app nav */
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Adds contrast against the busy image */
-    position: relative; /* Needed for the hover animation */
-}
-
-.nav ul li a:hover {
-    color: #ffd700; /* Keeps your gold theme */
-}
-
-
-.nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #ffd700;
-    transition: width 0.3s ease;
-}
-
-.nav ul li a:hover::after {
-    width: 100%;
-}
-
-.hamburger {
-    display: none;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-    z-index: 0;
-}
-
-/* Hero Section */
-.hero {
-    position: relative;
-    height: 80vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.hero-content {
-    backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 20px 30px;
-    border-radius: 12px;
-    z-index: 1;
-}
-
-
-.hero-content h1 {
-    font-size: 48px;
-    font-weight: 700;
-    color: #ede8ed;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-
-/* About Section */
-.about {
-    padding: 80px 40px;
-    text-align: center;
-    background: white;
-}
-
-.about h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
-    color: #1a2a6c;
-    font-weight: 700;
-}
-
-.about-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: center;
-}
-
-.about-text {
-    flex: 1;
-    padding: 20px;
-}
-
-.about-text h3 {
-    font-size: 20px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.about-text p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.about-image {
-    flex: 1;
-}
-
-.about-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.attribution {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-    text-align: center;
-}
-
-/* Services Section */
-.services {
-    padding: 80px 40px;
-    text-align: center;
-    background: #f9f9f9;
-}
-
-.services h2 {
-    font-size: 42px;
-    color: #1a2a6c;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.divider {
-    width: 100px;
-    height: 3px;
-    background: #ffd700;
-    margin: 0 auto 20px;
-}
-
-.services-subtitle {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.service-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.service-card i {
-    font-size: 32px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-}
-
-.service-card h3 {
-    font-size: 20px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.service-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px; /* Add margin to space out the button */
-}
-
-/* Button Styling */
-.service-btn {
-    background-color: #1a2a6c; /* Dark blue to match the image */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px; /* Rounded corners */
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.service-btn:hover {
-    background-color: #ffd700; /* Yellow hover effect to match the divider color */
-    color: #1a2a6c; /* Dark blue text on hover */
-}
-
-/* Numerology Section */
-.numerology {
-    padding: 80px 40px;
-    text-align: center;
-    background: white;
-}
-
-.numerology h2 {
-    font-size: 36px;
-    color: #1a2a6c;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.numerology-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: center;
-}
-
-.numerology-image {
-    flex: 1;
-}
-
-.numerology-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.numerology-text {
-    flex: 1;
-    padding: 20px;
-}
-
-.numerology-text p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.numerology-text ul {
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-.numerology-text ul li {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.numerology-text ul li .checkmark {
-    color: #ffd700;
-    margin-right: 10px;
-}
-
-.numerology-text ul li strong {
-    font-size: 18px;
-    color: #333;
-}
-
-.numerology-text .quote {
-    font-style: italic;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* Vastu Section */
-.vastu {
-    padding: 80px 40px;
-    text-align: center;
-    background: #f9f9f9;
-}
-
-.vastu h2 {
-    font-size: 36px;
-    color: #1a2a6c;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.vastu-subtitle {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.vastu-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: center;
-}
-
-.vastu-text {
-    flex: 1;
-    padding: 20px;
-}
-
-.vastu-text p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.vastu-text h3 {
-    font-size: 20px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.vastu-text ul {
-    list-style: none;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.vastu-text ul li {
-    margin-bottom: 15px;
-}
-
-.vastu-text ul li .checkmark {
-    color: #ffd700;
-    margin-right: 10px;
-}
-
-.vastu-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.vastu-image {
-    flex: 1;
-}
-
-.vastu-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.vastu-subservices {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 40px auto 0;
-}
-
-.subservice-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.subservice-icon {
-    background: #ffd700;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 10px;
-}
-
-.subservice-icon i {
-    color: white;
-    font-size: 24px;
-}
-
-.subservice-card h3 {
-    font-size: 20px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.subservice-card p {
-    font-size: 14px;
-    color: #666;
-}
-
-/* Testimonial Section */
-/* [Previous CSS remains the same until the Testimonial section] */
-
-/* Testimonial Section */
-.testimonials {
-    padding: 80px 40px;
-    text-align: center;
-    background: white;
-}
-
-.testimonials h2 {
-    font-size: 36px;
-    color: #1a2a6c;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.testimonials-subtitle {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto 40px;
-}
-
-.testimonial-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.testimonial-icon {
-    background: #ffd700;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    color: white;
-    margin: 0 auto 10px;
-}
-
-.testimonial-card h3 {
-    font-size: 18px;
-    color: #1a2a6c;
-    margin-bottom: 5px;
-    font-weight: 700;
-}
-
-.testimonial-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.stars {
-    color: #ffd700;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.quote {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.service {
-    font-size: 14px;
-    color: #666;
-    font-style: italic;
-}
-
-.featured-story {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: center;
-}
-
-.featured-image {
-    flex: 1;
-}
-
-.featured-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.featured-text {
-    flex: 1;
-    text-align: left;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.featured-text .stars {
-    margin-bottom: 10px;
-}
-
-.featured-text h3 {
-    font-size: 20px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.featured-text h4 {
-    font-size: 18px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.featured-text p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.client {
-    font-size: 14px;
-    color: #666;
-    font-style: italic;
-}
-
-/* Footer Section */
-.footer {
-    background: #1a2a6c; /* Purple background to match the image */
-    color: white;
-    padding: 40px 20px;
-    text-align: left;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-
-.footer-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-logo img {
-    width: 50px; /* Adjust based on your logo size */
-    margin-bottom: 20px;
-}
-
-.footer-column p {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.footer-column h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: white;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
-}
-
-.footer-column ul li a:hover {
-    color: #ffd700; /* Yellow hover effect to match the theme */
-}
-
-.footer-column p i {
-    color: #ffd700; /* Yellow icons to match the theme */
-    margin-right: 10px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icons a {
-    color: white;
-    font-size: 18px;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: #ffd700; /* Yellow hover effect */
-}
-
-.app-links {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.app-links img {
-    width: 120px; /* Adjust based on your app store button images */
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer-bottom p {
-    font-size: 12px;
-    color: white;
-    margin: 0;
-}
-
-/* Remove Contact Section CSS since it's now a footer */
-
-/* [Rest of the CSS remains the same] */
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-    .nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #1a2a6c;
-        width: 200px;
-        padding: 20px;
-        border-radius: 0 0 10px 10px;
-    }
-
-    .nav ul.active {
-        display: flex;
-    }
-
-    .hero-content h1 {
-        font-size: 36px;
-    }
-
-    .about-content,
-    .numerology-content,
-    .vastu-content,
-    .contact-content {
-        flex-direction: column;
-    }
-
-    .services-grid,
-    .vastu-subservices,
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .cta-buttons,
-    .vastu-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn {
-        width: 100%;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .services-grid,
-    .vastu-subservices,
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Smooth Scroll */
-html {
-    scroll-behavior: smooth;
-}
-
-/* [Previous CSS remains the same until the new section] */
-
-/* Personal Astrology Consultation Section */
-.consultation {
-    padding: 80px 40px;
-    text-align: center;
-    background: white;
-}
-
-.consultation h2 {
-    font-size: 36px;
-    color: #1a2a6c;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.consultation-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-    align-items: center;
-}
-
-.consultation-image {
-    flex: 1;
-}
-
-.consultation-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.consultation-text {
-    flex: 1;
-    padding: 20px;
-}
-
-.consultation-text p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.consultation-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.option-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.option-icon {
-    background: #ffd700;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.option-icon i {
-    color: white;
-    font-size: 20px;
-}
-
-.option-card h3 {
-    font-size: 18px;
-    color: #1a2a6c;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.option-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.price {
-    font-size: 16px;
-    color: #1a2a6c;
-    font-weight: 700;
-}
-
-.consultation-text .quote {
-    font-style: italic;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* [Rest of the CSS remains the same] */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VAS Ventures | Call-Astro, EyezonKid &amp; Togethr</title>
+<meta name="description" content="VAS Ventures Pvt. Ltd. builds Call-Astro (online astrology, Vastu software, Kundli &amp; numerology), EyezonKid (parental control) and Togethr — ancient wisdom, powered by modern technology.">
+<meta name="theme-color" content="#07061a">
+<link rel="canonical" href="https://vasventures.in/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VAS Ventures | Ancient wisdom, modern technology">
+<meta property="og:description" content="The company behind Call-Astro, EyezonKid and Togethr.">
+<meta property="og:url" content="https://vasventures.in/">
+<meta property="og:image" content="https://vasventures.in/images/hero-poster.webp">
+<link rel="icon" href="images/VasVenturesLogo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<link rel="preload" as="image" href="images/hero-poster.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "VAS Ventures Pvt. Ltd.",
+  "url": "https://vasventures.in/",
+  "logo": "https://vasventures.in/images/VasVenturesLogo.png",
+  "email": "info@vasventures.in",
+  "telephone": "+91-9650459807",
+  "address": { "@type": "PostalAddress", "streetAddress": "417, Manhattan Street, Mahagun Moderne, Sector 78", "addressLocality": "Noida", "addressRegion": "Uttar Pradesh", "postalCode": "201304", "addressCountry": "IN" },
+  "brand": [
+    { "@type": "Brand", "name": "Call-Astro", "url": "https://www.call-astro.com/" },
+    { "@type": "Brand", "name": "EyezonKid", "url": "https://eyezonkid.com/" },
+    { "@type": "Brand", "name": "Togethr" }
+  ]
+}
+</script>
+
+<style>
+/* ===================== TOKENS ===================== */
+:root{
+  --bg:#07061a; --bg-2:#0c0a26; --ink:#f4f1ff; --muted:#b9b3d6; --dim:#8a84ad;
+  --gold:#f7c46c; --amber:#ff9d42; --rose:#ff6b8b; --violet:#8b5cf6; --blue:#4a8cff; --teal:#2ec4b6;
+  --glass:rgba(255,255,255,.055); --glass-2:rgba(255,255,255,.09); --line:rgba(255,255,255,.12); --line-2:rgba(255,255,255,.2);
+  --grad-gold:linear-gradient(135deg,#ffe2a3 0%,#f7c46c 35%,#ff9d42 100%);
+  --grad-cosmic:linear-gradient(135deg,#8b5cf6 0%,#4a8cff 50%,#2ec4b6 100%);
+  --radius:24px; --radius-lg:32px;
+  --font-d:'Cinzel',Georgia,serif; --font-b:'Manrope',system-ui,-apple-system,sans-serif;
+  --max:1240px; --gutter:clamp(16px,4vw,48px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* page-wide cosmic background */
+.cosmos{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1200px 700px at 85% -10%,rgba(139,92,246,.22),transparent 60%),
+  radial-gradient(900px 600px at -10% 30%,rgba(74,140,255,.16),transparent 60%),
+  radial-gradient(900px 700px at 50% 120%,rgba(255,157,66,.12),transparent 60%),
+  var(--bg)}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* ===================== BUTTONS ===================== */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;font-weight:700;font-size:16px;letter-spacing:.01em;white-space:nowrap;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .35s}
+.btn i{transition:transform .35s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover i.fa-arrow-right{transform:translateX(4px)}
+.btn-gold{background:var(--grad-gold);color:#1b1205;box-shadow:0 10px 30px -8px rgba(255,157,66,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-gold:hover{box-shadow:0 16px 40px -8px rgba(255,157,66,.75),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-glass{background:var(--glass-2);border:1px solid var(--line-2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.btn-glass:hover{background:rgba(255,255,255,.15)}
+.btn-sm{height:42px;padding:0 18px;font-size:14px}
+/* gold shimmer sweep */
+.btn-gold::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);background-size:250% 100%;background-position:150% 0;transition:background-position .9s var(--ease);pointer-events:none}
+.btn-gold:hover::after{background-position:-50% 0}
+
+/* ===================== GLASS ===================== */
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);box-shadow:0 20px 50px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+
+/* ===================== NAVBAR ===================== */
+.nav{position:fixed;top:14px;left:0;right:0;z-index:100;padding:0 var(--gutter);transition:top .4s var(--ease)}
+.nav__bar{max-width:var(--max);margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 10px 0 22px;border-radius:999px;
+  background:rgba(12,10,38,.42);border:1px solid var(--line);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:0 10px 40px -10px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);transition:background-color .4s,height .4s var(--ease),box-shadow .4s}
+.nav.is-scrolled{top:8px}
+.nav.is-scrolled .nav__bar{background:rgba(9,7,30,.78);height:60px}
+.nav__logo img{height:38px;width:auto}
+.nav__menu{display:flex;align-items:center;gap:2px}
+.nav__item{position:relative}
+.nav__link{display:flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:999px;font-size:15px;font-weight:600;color:#e6e1ff;transition:background-color .25s,color .25s}
+.nav__link i.fa-chevron-down{font-size:10px;opacity:.7;transition:transform .3s var(--ease)}
+.nav__link:hover,.nav__item:focus-within>.nav__link{background:rgba(255,255,255,.08);color:#fff}
+.nav__item.has-drop:hover>.nav__link i.fa-chevron-down,.nav__item.has-drop:focus-within>.nav__link i.fa-chevron-down{transform:rotate(180deg)}
+.nav__link.is-active{color:var(--gold)}
+/* dropdown */
+.drop{position:absolute;top:calc(100% + 14px);left:50%;min-width:260px;padding:10px;border-radius:22px;opacity:0;visibility:hidden;transform:translate(-50%,10px) scale(.98);transform-origin:top center;transition:opacity .3s var(--ease),transform .35s var(--ease),visibility 0s .35s;
+  background:rgba(14,11,42,.86);border:1px solid var(--line);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.drop::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+.nav__item.has-drop:hover>.drop,.nav__item.has-drop:focus-within>.drop{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1);transition-delay:0s}
+.drop--grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:2px;min-width:500px}
+.drop a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;font-size:14.5px;font-weight:600;color:#ddd8f5;transition:background-color .2s,color .2s,transform .25s var(--ease)}
+.drop a:hover{background:rgba(255,255,255,.07);color:#fff;transform:translateX(3px)}
+.drop .ico{flex:0 0 34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:14px;color:var(--gold);background:rgba(247,196,108,.12);border:1px solid rgba(247,196,108,.22)}
+.nav__cta{display:flex;align-items:center;gap:8px}
+.nav__burger{display:none;width:46px;height:46px;border-radius:50%;place-items:center;background:var(--glass-2);border:1px solid var(--line)}
+.nav__burger span,.nav__burger span::before,.nav__burger span::after{display:block;width:18px;height:2px;border-radius:2px;background:#fff;position:relative;transition:transform .35s var(--ease),background-color .2s}
+.nav__burger span::before,.nav__burger span::after{content:"";position:absolute;left:0}
+.nav__burger span::before{top:-6px}.nav__burger span::after{top:6px}
+.nav.is-open .nav__burger span{background:transparent}
+.nav.is-open .nav__burger span::before{transform:translateY(6px) rotate(45deg)}
+.nav.is-open .nav__burger span::after{transform:translateY(-6px) rotate(-45deg)}
+/* mobile panel */
+.mnav{position:fixed;inset:0;z-index:99;padding:96px var(--gutter) 32px;overflow-y:auto;background:rgba(7,6,26,.92);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.nav.is-open~.mnav{opacity:1;visibility:visible;transition-delay:0s}
+.mnav>ul>li{border-bottom:1px solid var(--line)}
+.mnav>ul>li>a,.mnav summary{display:flex;align-items:center;justify-content:space-between;padding:16px 4px;font-size:18px;font-weight:700;cursor:pointer;list-style:none}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary i{font-size:12px;transition:transform .3s}
+.mnav details[open] summary i{transform:rotate(180deg)}
+.mnav details ul{padding:0 0 14px 6px;display:grid;gap:2px}
+.mnav details a{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:12px;color:var(--muted);font-weight:600}
+.mnav details a i{width:18px;color:var(--gold)}
+.mnav .btn{width:100%;justify-content:center;margin-top:24px}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:140px 0 90px;overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__media video,.hero__media img{width:100%;height:100%;object-fit:cover}
+.hero__media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(7,6,26,.95) 0%,rgba(7,6,26,.78) 38%,rgba(7,6,26,.25) 70%,rgba(7,6,26,.55) 100%),
+  linear-gradient(180deg,rgba(7,6,26,.2) 0%,rgba(7,6,26,0) 60%,var(--bg) 100%)}
+.hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(247,196,108,.1);border:1px solid rgba(247,196,108,.28)}
+.eyebrow .dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--grad-gold);color:#1b1205;font-size:11px}
+.hero h1{font-family:var(--font-d);font-weight:700;font-size:clamp(34px,4.6vw,62px);line-height:1.08;letter-spacing:-.01em;margin:22px 0 22px}
+.text-gold{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:560px}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero__chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+.chip{display:flex;align-items:center;gap:12px;padding:12px 18px 12px 12px;border-radius:18px;font-size:14px;font-weight:600;color:#e9e5ff}
+.chip i{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:var(--gold)}
+.chip small{display:block;font-size:12px;font-weight:500;color:var(--dim)}
+/* orbit card */
+.orbit{position:relative;aspect-ratio:1;width:min(100%,520px);margin-left:auto}
+.orbit__ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(247,196,108,.35);animation:spin 60s linear infinite}
+.orbit__ring--2{inset:12%;border:1px solid rgba(139,92,246,.35);animation-duration:40s;animation-direction:reverse}
+.orbit__ring--3{inset:26%;border:1px dashed rgba(74,140,255,.4);animation-duration:28s}
+.orbit__core{position:absolute;inset:34%;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 35% 30%,rgba(255,226,163,.95),rgba(255,157,66,.75) 45%,rgba(139,92,246,.35) 75%,transparent 76%);box-shadow:0 0 80px rgba(255,157,66,.45),0 0 160px rgba(139,92,246,.35);animation:pulse 6s ease-in-out infinite}
+.orbit__core span{font-family:var(--font-d);font-weight:700;font-size:clamp(14px,1.6vw,20px);color:#1b1205;letter-spacing:.06em}
+/* each planet rides on its own ring: the wrapper spins, the icon counter-spins so it stays upright */
+.planet{position:absolute;inset:0;border-radius:50%;animation:spin 60s linear infinite}
+.planet b{position:absolute;display:grid;place-items:center;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:18px;font-size:22px;color:#fff;background:rgba(14,11,42,.72);border:1px solid var(--line-2);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px -10px rgba(0,0,0,.6),0 0 24px rgba(247,196,108,.18);animation:spin 60s linear infinite reverse}
+.planet--a{inset:0}.planet--a b{top:50%;left:100%}
+.planet--b{inset:12%;animation-duration:40s;animation-direction:reverse}.planet--b b{top:0;left:50%;animation-duration:40s;animation-direction:normal}
+.planet--c{inset:26%;animation-duration:28s}.planet--c b{top:100%;left:50%;animation-duration:28s}
+.planet b i{color:var(--gold)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.05);box-shadow:0 0 110px rgba(255,157,66,.55),0 0 200px rgba(139,92,246,.45)}}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:26px;height:42px;border-radius:14px;border:1.5px solid var(--line-2)}
+.scroll-hint::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+/* ===================== MARQUEE ===================== */
+.marquee{border-block:1px solid var(--line);background:rgba(255,255,255,.025);overflow:hidden;padding:18px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee__track{display:flex;gap:46px;width:max-content;animation:marquee 38s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__track span{display:flex;align-items:center;gap:12px;font-family:var(--font-d);font-size:18px;font-weight:600;color:#d9d3f7;white-space:nowrap}
+.marquee__track span i{color:var(--gold);font-size:15px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ===================== SECTIONS ===================== */
+section{position:relative}
+.sec{padding:clamp(80px,10vw,130px) 0}
+.sec__head{max-width:720px;margin:0 auto clamp(40px,5vw,64px);text-align:center}
+.sec__head.left{margin-left:0;text-align:left}
+.sec__eyebrow{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec__title{font-family:var(--font-d);font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.15}
+.sec__sub{margin-top:16px;font-size:clamp(16px,1.4vw,18px);color:var(--muted)}
+
+/* ===================== VENTURES CAROUSEL ===================== */
+.ventures{overflow:hidden}
+.carousel{position:relative}
+.carousel__viewport{overflow:hidden;border-radius:var(--radius-lg)}
+.carousel__track{display:flex;transition:transform .8s var(--ease)}
+.slide{flex:0 0 100%;padding:2px}
+.venture{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;min-height:500px;padding:clamp(28px,4vw,56px);border-radius:var(--radius-lg);overflow:hidden;isolation:isolate}
+.venture::before{content:"";position:absolute;z-index:-1;width:620px;height:620px;right:-160px;top:-160px;border-radius:50%;filter:blur(30px);opacity:.55;background:var(--glow,radial-gradient(circle,rgba(255,157,66,.6),transparent 65%))}
+.venture__tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid var(--line)}
+.venture h3{font-family:var(--font-d);font-size:clamp(30px,3.4vw,44px);line-height:1.08;margin:18px 0 14px}
+.venture p{color:var(--muted);font-size:17px;max-width:520px}
+.venture ul{margin:22px 0 30px;display:grid;gap:10px}
+.venture li{display:flex;gap:12px;align-items:flex-start;color:#e4e0fa;font-weight:600}
+.venture li i{margin-top:5px;color:var(--accent,var(--gold));font-size:13px}
+.venture__actions{display:flex;flex-wrap:wrap;gap:12px}
+.venture__art{position:relative;height:100%;min-height:380px;display:grid;place-items:center}
+.carousel__nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px}
+.c-btn{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--glass-2);border:1px solid var(--line);transition:background-color .25s,transform .3s var(--ease)}
+.c-btn:hover{background:rgba(255,255,255,.16);transform:scale(1.06)}
+.dots{display:flex;gap:8px}
+.dots button{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.25);transition:width .4s var(--ease),background-color .3s}
+.dots button.is-active{width:34px;background:var(--grad-gold)}
+.progress{height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;width:140px}
+.progress span{display:block;height:100%;width:0;background:var(--grad-gold)}
+
+/* phone mockups (pure CSS art) */
+.phone{position:relative;width:230px;height:470px;border-radius:40px;padding:10px;background:linear-gradient(160deg,#2a2550,#120f2e);border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 0 0 2px rgba(255,255,255,.04);transform:rotate(-6deg);animation:float 7s ease-in-out infinite}
+.phone__screen{position:relative;height:100%;border-radius:31px;overflow:hidden;padding:44px 14px 14px;background:linear-gradient(180deg,#14113a,#0b0925)}
+.phone__screen::before{content:"";position:absolute;top:12px;left:50%;width:84px;height:22px;margin-left:-42px;border-radius:12px;background:#05040f}
+.phone--b{position:absolute;right:4%;bottom:6%;width:170px;height:340px;border-radius:32px;transform:rotate(8deg);animation-delay:-3s}
+.phone--b .phone__screen{border-radius:24px;padding:36px 10px 10px}
+@keyframes float{50%{translate:0 -14px}}
+.ui-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07);margin-bottom:8px;font-size:11.5px;font-weight:700}
+.ui-row small{display:block;font-size:10px;font-weight:500;color:var(--dim)}
+.ui-av{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;color:#1b1205;background:var(--grad-gold)}
+.ui-pill{margin-left:auto;padding:4px 8px;border-radius:999px;font-size:9.5px;background:rgba(46,196,182,.18);color:#6ff0e4}
+.ui-title{font-size:13px;font-weight:800;margin:2px 2px 10px}
+.ui-chart{height:86px;border-radius:14px;margin-bottom:8px;background:
+  radial-gradient(circle at 50% 50%,transparent 30%,rgba(247,196,108,.6) 31%,rgba(247,196,108,.6) 33%,transparent 34%),
+  conic-gradient(from 0deg,rgba(139,92,246,.5),rgba(74,140,255,.5),rgba(46,196,182,.5),rgba(255,157,66,.5),rgba(139,92,246,.5));-webkit-mask:radial-gradient(circle,transparent 22%,#000 23%);mask:radial-gradient(circle,transparent 22%,#000 23%)}
+.ui-btn{display:block;text-align:center;padding:10px;border-radius:12px;font-size:11.5px;font-weight:800;background:var(--grad-gold);color:#1b1205}
+.ui-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:6px}
+.ui-bar i{display:block;height:100%;width:45%;background:var(--grad-cosmic)}
+.badge-float{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;font-size:13px;font-weight:700;animation:float 6s ease-in-out infinite}
+.badge-float i{color:var(--accent,var(--gold))}
+
+/* ===================== SERVICES GRID ===================== */
+.grid{display:grid;gap:18px}
+.grid--4{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;display:flex;flex-direction:column;padding:26px;border-radius:var(--radius);overflow:hidden;isolation:isolate;transition:transform .5s var(--ease),border-color .4s,background-color .4s}
+.card::before{content:"";position:absolute;z-index:-1;inset:0;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(247,196,108,.16),transparent 45%)}
+.card:hover{transform:translateY(-6px);border-color:rgba(247,196,108,.35)}
+.card:hover::before{opacity:1}
+.card__ico{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:22px;color:#1b1205;background:var(--grad-gold);box-shadow:0 12px 26px -10px rgba(255,157,66,.7);transition:transform .5s var(--ease)}
+.card:hover .card__ico{transform:rotate(-8deg) scale(1.06)}
+.card__ico--c{background:var(--grad-cosmic);color:#fff;box-shadow:0 12px 26px -10px rgba(74,140,255,.7)}
+.card h3{font-size:19px;font-weight:800;margin:20px 0 8px}
+.card p{font-size:14.5px;color:var(--muted);flex:1}
+.card__go{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:14px;font-weight:800;color:var(--gold)}
+.card__go i{transition:transform .35s var(--ease)}
+.card:hover .card__go i{transform:translateX(5px)}
+
+/* ===================== VASTU SPOTLIGHT ===================== */
+.spot{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.spot__visual{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:1/1;isolation:isolate}
+.spot__visual>img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1.4s var(--ease)}
+.spot__visual:hover>img{transform:scale(1.12)}
+.spot__visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(7,6,26,.85))}
+.win{position:absolute;left:6%;right:6%;bottom:6%;z-index:2;padding:16px;border-radius:20px}
+.win__top{display:flex;gap:6px;margin-bottom:12px}.win__top i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.win__top i:nth-child(2){background:#febc2e}.win__top i:nth-child(3){background:#28c840}
+.win__row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;font-size:13px;font-weight:700;padding:8px 0;border-top:1px solid var(--line)}
+.win__row span:last-child{color:#6ff0e4;font-size:12px}
+.compass{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(247,196,108,.5);color:var(--gold);font-size:11px;font-weight:800}
+.checks{display:grid;gap:14px;margin:26px 0 32px}
+.checks li{display:flex;gap:14px;align-items:flex-start}
+.checks li i{flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:12px;color:#1b1205;background:var(--grad-gold);margin-top:2px}
+.checks b{display:block;font-size:16px}
+.checks span{font-size:14.5px;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ===================== TOOLS CAROUSEL (scroll-snap) ===================== */
+.rail-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px}
+.rail-head .sec__head{margin:0}
+.rail-ctrl{display:flex;gap:10px}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(250px,24%,300px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 4px 18px;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent)}
+.rail::-webkit-scrollbar{display:none}
+.rail .card{scroll-snap-align:start;min-height:250px}
+.tool-num{position:absolute;top:18px;right:22px;font-family:var(--font-d);font-size:46px;font-weight:700;line-height:1;color:rgba(255,255,255,.06)}
+
+/* ===================== SHOP ===================== */
+.shop{grid-template-columns:repeat(4,1fr)}
+.prod{position:relative;padding:0;overflow:hidden}
+.prod__art{position:relative;height:170px;display:grid;place-items:center;overflow:hidden;background:var(--art,linear-gradient(135deg,#3b2a7a,#1a1450))}
+.prod__art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(7,6,26,.7),transparent 60%)}
+.prod__art i{position:relative;z-index:1;font-size:56px;color:rgba(255,255,255,.92);filter:drop-shadow(0 10px 20px rgba(0,0,0,.35));transition:transform .6s var(--ease)}
+.prod:hover .prod__art i{transform:translateY(-6px) scale(1.08) rotate(-4deg)}
+.prod__art .halo{position:absolute;width:150px;height:150px;border-radius:50%;border:1px dashed rgba(255,255,255,.35);animation:spin 26s linear infinite}
+.prod__body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.prod__body h3{margin:0 0 6px}
+
+/* ===================== NUMEROLOGY ===================== */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+.num{padding:30px;border-radius:var(--radius);text-align:left}
+.num__n{font-family:var(--font-d);font-size:64px;font-weight:700;line-height:1;background:var(--grad-cosmic);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num h3{font-size:19px;margin:14px 0 6px}
+.num p{color:var(--muted);font-size:14.5px}
+.quote{margin:36px auto 0;max-width:760px;text-align:center;font-family:var(--font-d);font-size:clamp(18px,2vw,23px);color:#e8e3ff}
+
+/* ===================== STEPS ===================== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{position:relative;padding:30px;border-radius:var(--radius)}
+.step__n{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;font-weight:800;color:var(--gold);border:1px solid rgba(247,196,108,.35);background:rgba(247,196,108,.08)}
+.step h3{font-size:20px;margin:18px 0 8px}
+.step p{color:var(--muted);font-size:15px}
+.step:not(:last-child)::after{content:"";position:absolute;top:52px;right:-18px;width:18px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ===================== CTA BAND ===================== */
+.cta{position:relative;overflow:hidden;isolation:isolate;padding:clamp(40px,6vw,80px);border-radius:var(--radius-lg);display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.cta::before{content:"";position:absolute;z-index:-1;inset:-20% -10% -20% 35%;background:url(images/zodiac-wheel.webp) center/cover no-repeat;opacity:.5;-webkit-mask:radial-gradient(closest-side,#000 35%,transparent 100%);mask:radial-gradient(closest-side,#000 35%,transparent 100%);animation:spin 120s linear infinite}
+.cta h2{font-family:var(--font-d);font-size:clamp(26px,3.2vw,40px);line-height:1.1}
+.cta p{color:var(--muted);margin-top:14px;font-size:17px;max-width:520px}
+.cta .btns{justify-content:flex-end}
+
+/* ===================== FOOTER ===================== */
+.foot{margin-top:clamp(80px,10vw,120px);border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.foot__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;padding:64px 0 40px}
+.foot__logo img{height:46px;width:auto;margin-bottom:18px}
+.foot p{color:var(--dim);font-size:14.5px}
+.foot h4{font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.foot ul{display:grid;gap:10px}
+.foot ul a{color:var(--muted);font-size:14.5px;transition:color .2s}
+.foot ul a:hover{color:#fff}
+.foot__contact li{display:flex;gap:12px;color:var(--muted);font-size:14.5px}
+.foot__contact i{margin-top:5px;color:var(--gold);width:16px}
+.foot__bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:22px 0 30px;border-top:1px solid var(--line);font-size:13.5px;color:var(--dim)}
+
+/* ===================== REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1180px){
+  .nav__menu,.nav__cta .btn-gold span{display:none}
+  .nav__burger{display:grid}
+  .nav__cta .btn-gold{width:46px;height:46px;padding:0;justify-content:center}
+  .grid--4,.shop{grid-template-columns:repeat(2,1fr)}
+  .foot__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:960px){
+  .hero__grid,.venture,.spot,.cta{grid-template-columns:1fr}
+  .orbit{width:min(86%,420px);margin:10px auto 0}
+  .venture{min-height:0}
+  .venture__art{min-height:360px}
+  .nums,.steps{grid-template-columns:1fr}
+  .step:not(:last-child)::after{display:none}
+  .cta .btns{justify-content:flex-start}
+  .rail-head{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:600px){
+  .nav__bar{height:60px;padding:0 8px 0 16px}
+  .nav__logo img{height:32px}
+  .hero{padding-top:120px}
+  .hero__chips .chip{flex:1 1 100%}
+  .grid--4,.shop{grid-template-columns:1fr}
+  .foot__grid{grid-template-columns:1fr}
+  .phone{width:200px;height:410px}
+  .phone--b{width:140px;height:280px;right:0}
+  .planet b{width:46px;height:46px;margin:-23px 0 0 -23px;font-size:18px;border-radius:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo"><img src="./images/VasVenturesLogo.png" alt="VAS VENTURES Pvt Ltd Logo" /></div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#footer">Contact</a></li>
-            </ul>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
-        </nav>
-    </header>
+<div class="cosmos" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="./images/hero-bg1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
-        <div class="hero-content">
-            <h1> Your Future</h1>
-        </div>
-    </section>
-    
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="nav__logo" href="/" aria-label="VAS Ventures home"><img src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures"></a>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>About Vas Ventures</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Our Mission</h3>
-                <p>At Vas Ventures, we’re dedicated to empowering individuals through innovative astrology and wellness solutions. Our mission is to blend ancient wisdom with modern technology.</p>
-                <h3>Our Vision</h3>
-                <p>We envision a world where everyone has access to personalized guidance for their life journey. Through our services, we aim to create meaningful, positive, and transformative experiences.</p>
-                <a href="#services" class="btn">Discover Our Services</a>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1484981138541-3d074aa97716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8aW5mb3JtYXRpb24lMjBwcm9mZXNzaW9uYWwlMjBhdXRoZW50aWN8ZW58MHwwfHx8MTc0MzE1OTQ2OHww&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="About Image">
-                
-            </div>
-        </div>
-    </section>
+    <nav aria-label="Primary">
+      <ul class="nav__menu">
+        <li class="nav__item"><a class="nav__link is-active" href="/">Home</a></li>
 
-    <!-- Services Section -->
-<section id="services" class="services">
-    <h2>Our Products</h2>
-    <div class="divider"></div>
-    <p class="services-subtitle">Our flagship platform offering comprehensive astrology services and personalized guidance. Connect with expert astrologers to navigate life’s journey with confidence and clarity.</p>
-    <div class="services-grid">
-        <div class="service-card">
-            <i class="fas fa-calculator"></i>
-            <h3>Numerology Report</h3>
-            <p>Discover how numbers influence your life path and personality traits through detailed analysis.</p>
-            <a href="https://www.call-astro.com/numerology-report" target="_blank">
-                <button class="service-btn">Get Report</button>
-            </a>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-home"></i>
-            <h3>Vastu App</h3>
-            <p>Balance energy in your living spaces with our intuitive app offering personalized recommendations.</p>
-            <a href="https://www.call-astro.com/vastu-page" target="_blank">
-                <button class="service-btn">DOWNLOAD APP</button>
-            </a>
-        </div>
-        
-        <div class="service-card">
-            <i class="fas fa-comment"></i>
-            <h3>Chat</h3>
-            <p>Instant messaging with certified astrologers for quick guidance on pressing life questions.</p>
-            <a href="https://www.call-astro.com/chat-with-astrologer" target="_blank">
-                <button class="service-btn">START CHAT</button>
-            </a>
-            
-        </div>
-        <div class="service-card">
-            <i class="fas fa-phone"></i>
-            <h3>Call</h3>
-            <p>Direct phone consultations with experienced astrologers for in-depth personal guidance.</p>
-            <a href="https://www.call-astro.com/talk-with-astrologer" target="_blank">
-                <button class="service-btn">START CALL</button>
-            </a>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-video"></i>
-            <h3>Live Astrologers</h3>
-            <p>Interactive live sessions with renowned astrologers offering real-time predictions and advice.</p>
-            <a href="https://www.call-astro.com/live-astrologers" target="_blank">
-                <button class="service-btn">VIDEO CONSULT</button>
-            </a>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-star"></i>
-            <h3>Free Kundli</h3>
-            <p>Generate your detailed birth chart with planetary positions and personalized insights.</p>
-            <a href="https://www.call-astro.com/free-kundli" target="_blank">
-                <button class="service-btn">CREATE KUNDLI</button>
-            </a>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-heart"></i>
-            <h3>Matchmaking</h3>
-            <p>Find your perfect match with astrological compatibility insights.</p>
-            <a href="https://www.call-astro.com/kundli-matching" target="_blank">
-                <button class="service-btn">MATCH HOROSCOPES</button>
-            </a>
-        
-        </div>
-       <div class="service-card" id="togethrAppCard">
-    <i class="fas fa-users"></i>
-    <h3>Togethr App</h3>
-    <p>Connect, share & grow together. Join the community with seamless OTP verification.</p>
-    <a href="/togethr-account" target="_blank" style="text-decoration: none;">
-        <button class="service-btn">LAUNCH TOGETHR</button>
-    </a>
-</div>
+        <li class="nav__item has-drop">
+          <a class="nav__link" href="#services" aria-haspopup="true">Astrology Services <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="drop">
+            <a href="https://www.call-astro.com/vastu-software"><span class="ico"><i class="fa-solid fa-compass"></i></span>Vastu Software</a>
+            <a href="https://www.call-astro.com/numerology-insights"><span class="ico"><i class="fa-solid fa-hashtag"></i></span>Numerology Report</a>
+            <a href="https://www.call-astro.com/free-kundli"><span class="ico"><i class="fa-solid fa-dharmachakra"></i></span>Free Kundli</a>
+            <a href="https://www.call-astro.com/horoscopes"><span class="ico"><i class="fa-solid fa-star-and-crescent"></i></span>Horoscope</a>
+            <a href="https://www.call-astro.com/planetary"><span class="ico"><i class="fa-solid fa-earth-asia"></i></span>Planet Transit</a>
+            <a href="https://www.call-astro.com/kundli-matching"><span class="ico"><i class="fa-solid fa-heart"></i></span>Matchmaking</a>
+            <a href="https://www.call-astro.com/shubh-muhrat"><span class="ico"><i class="fa-regular fa-calendar-check"></i></span>Shubh Muhurat</a>
+            <a href="https://www.call-astro.com/pooja"><span class="ico"><i class="fa-solid fa-om"></i></span>Book Pooja</a>
+          </div>
+        </li>
+
+        <li class="nav__item"><a class="nav__link" href="https://www.call-astro.com/vastu-software">Vastu Software</a></li>
+
+        <li class="nav__item has-drop">
+          <a class="nav__link" href="#tools" aria-haspopup="true">Astrology Tools <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="drop drop--grid">
+            <a href="https://www.call-astro.com/graphology"><span class="ico"><i class="fa-solid fa-pen-nib"></i></span>Graphology Report</a>
+            <a href="https://www.call-astro.com/ayadi-calculator"><span class="ico"><i class="fa-solid fa-calculator"></i></span>Ayadi Calculator</a>
+            <a href="https://www.call-astro.com/hawan-muhurat"><span class="ico"><i class="fa-solid fa-fire"></i></span>Hawan Muhurat</a>
+            <a href="https://www.call-astro.com/lucky-dates"><span class="ico"><i class="fa-solid fa-mobile-screen"></i></span>Mobile Lucky Dates</a>
+            <a href="https://www.call-astro.com/theft-finder"><span class="ico"><i class="fa-solid fa-magnifying-glass"></i></span>Theft Finder</a>
+            <a href="https://www.call-astro.com/watch-predictive"><span class="ico"><i class="fa-regular fa-clock"></i></span>Watch Predictive</a>
+            <a href="https://www.call-astro.com/vastu-color"><span class="ico"><i class="fa-solid fa-palette"></i></span>Vastu Color</a>
+            <a href="https://www.call-astro.com/prashna-shastra"><span class="ico"><i class="fa-solid fa-circle-question"></i></span>Prashna Shastra</a>
+            <a href="https://www.call-astro.com/vastu-report-online"><span class="ico"><i class="fa-solid fa-file-lines"></i></span>Vastu Report</a>
+          </div>
+        </li>
+
+        <li class="nav__item has-drop">
+          <a class="nav__link" href="#shop" aria-haspopup="true">Shop <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="drop">
+            <a href="https://www.call-astro.com/pooja"><span class="ico"><i class="fa-solid fa-om"></i></span>Pooja</a>
+            <a href="https://www.call-astro.com/astromall"><span class="ico"><i class="fa-solid fa-hands-praying"></i></span>Jaap</a>
+            <a href="https://www.call-astro.com/vastu-software"><span class="ico"><i class="fa-solid fa-laptop-code"></i></span>Software</a>
+            <a href="https://www.call-astro.com/astromall"><span class="ico"><i class="fa-solid fa-coins"></i></span>Gold</a>
+          </div>
+        </li>
+
+        <li class="nav__item"><a class="nav__link" href="https://www.call-astro.com/blogs">Blog</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn-gold btn-sm" href="https://www.call-astro.com/chat-with-astrologer" aria-label="Chat with Astrologer"><i class="fa-regular fa-comment-dots"></i><span>Chat with Astrologer</span></a>
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
     </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mnav" id="mnav">
+  <ul>
+    <li><a href="/">Home <i class="fa-solid fa-arrow-right"></i></a></li>
+    <li><details><summary>Astrology Services <i class="fa-solid fa-chevron-down"></i></summary><ul>
+      <li><a href="https://www.call-astro.com/vastu-software"><i class="fa-solid fa-compass"></i>Vastu Software</a></li>
+      <li><a href="https://www.call-astro.com/numerology-insights"><i class="fa-solid fa-hashtag"></i>Numerology Report</a></li>
+      <li><a href="https://www.call-astro.com/free-kundli"><i class="fa-solid fa-dharmachakra"></i>Free Kundli</a></li>
+      <li><a href="https://www.call-astro.com/horoscopes"><i class="fa-solid fa-star-and-crescent"></i>Horoscope</a></li>
+      <li><a href="https://www.call-astro.com/planetary"><i class="fa-solid fa-earth-asia"></i>Planet Transit</a></li>
+      <li><a href="https://www.call-astro.com/kundli-matching"><i class="fa-solid fa-heart"></i>Matchmaking</a></li>
+      <li><a href="https://www.call-astro.com/shubh-muhrat"><i class="fa-regular fa-calendar-check"></i>Shubh Muhurat</a></li>
+      <li><a href="https://www.call-astro.com/pooja"><i class="fa-solid fa-om"></i>Book Pooja</a></li>
+    </ul></details></li>
+    <li><a href="https://www.call-astro.com/vastu-software">Vastu Software <i class="fa-solid fa-arrow-right"></i></a></li>
+    <li><details><summary>Astrology Tools <i class="fa-solid fa-chevron-down"></i></summary><ul>
+      <li><a href="https://www.call-astro.com/graphology"><i class="fa-solid fa-pen-nib"></i>Graphology Report</a></li>
+      <li><a href="https://www.call-astro.com/ayadi-calculator"><i class="fa-solid fa-calculator"></i>Ayadi Calculator</a></li>
+      <li><a href="https://www.call-astro.com/hawan-muhurat"><i class="fa-solid fa-fire"></i>Hawan Muhurat</a></li>
+      <li><a href="https://www.call-astro.com/lucky-dates"><i class="fa-solid fa-mobile-screen"></i>Mobile Lucky Dates</a></li>
+      <li><a href="https://www.call-astro.com/theft-finder"><i class="fa-solid fa-magnifying-glass"></i>Theft Finder</a></li>
+      <li><a href="https://www.call-astro.com/watch-predictive"><i class="fa-regular fa-clock"></i>Watch Predictive</a></li>
+      <li><a href="https://www.call-astro.com/vastu-color"><i class="fa-solid fa-palette"></i>Vastu Color</a></li>
+      <li><a href="https://www.call-astro.com/prashna-shastra"><i class="fa-solid fa-circle-question"></i>Prashna Shastra</a></li>
+      <li><a href="https://www.call-astro.com/vastu-report-online"><i class="fa-solid fa-file-lines"></i>Vastu Report</a></li>
+    </ul></details></li>
+    <li><details><summary>Shop <i class="fa-solid fa-chevron-down"></i></summary><ul>
+      <li><a href="https://www.call-astro.com/pooja"><i class="fa-solid fa-om"></i>Pooja</a></li>
+      <li><a href="https://www.call-astro.com/astromall"><i class="fa-solid fa-hands-praying"></i>Jaap</a></li>
+      <li><a href="https://www.call-astro.com/vastu-software"><i class="fa-solid fa-laptop-code"></i>Software</a></li>
+      <li><a href="https://www.call-astro.com/astromall"><i class="fa-solid fa-coins"></i>Gold</a></li>
+    </ul></details></li>
+    <li><a href="https://www.call-astro.com/blogs">Blog <i class="fa-solid fa-arrow-right"></i></a></li>
+  </ul>
+  <a class="btn btn-gold" href="https://www.call-astro.com/chat-with-astrologer"><i class="fa-regular fa-comment-dots"></i>Chat with Astrologer</a>
+</div>
+
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="hero__media" aria-hidden="true">
+    <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp">
+      <source src="images/hero-bg.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="wrap hero__grid">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"><i class="fa-solid fa-star"></i></span>VAS Ventures Pvt. Ltd.</span>
+      <h1 class="reveal" style="--d:.08s">Ancient wisdom,<br><span class="text-gold">powered by technology</span></h1>
+      <p class="lead reveal" style="--d:.16s">We build products that guide, protect and connect families — from India's online astrology platform <b>Call-Astro</b> to <b>EyezonKid</b> parental control and the <b>Togethr</b> community app.</p>
+      <div class="hero__ctas reveal" style="--d:.24s">
+        <a class="btn btn-gold" href="https://www.call-astro.com/chat-with-astrologer"><i class="fa-regular fa-comment-dots"></i>Chat with Astrologer</a>
+        <a class="btn btn-glass" href="#ventures">Explore our products <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="hero__chips reveal" style="--d:.32s">
+        <div class="chip glass"><i class="fa-solid fa-dharmachakra"></i><div>Kundli &amp; Horoscope<small>Free birth-chart tools</small></div></div>
+        <div class="chip glass"><i class="fa-solid fa-compass"></i><div>Vastu Software<small>Plan spaces with confidence</small></div></div>
+        <div class="chip glass"><i class="fa-solid fa-shield-heart"></i><div>Family safety<small>EyezonKid parental control</small></div></div>
+      </div>
+    </div>
+
+    <div class="orbit reveal" style="--d:.2s" aria-hidden="true">
+      <div class="orbit__ring"></div><div class="orbit__ring orbit__ring--2"></div><div class="orbit__ring orbit__ring--3"></div>
+      <div class="orbit__core"><span>VAS<br>VENTURES</span></div>
+      <div class="planet planet--a"><b><i class="fa-solid fa-star-and-crescent"></i></b></div>
+      <div class="planet planet--b"><b><i class="fa-solid fa-shield-halved"></i></b></div>
+      <div class="planet planet--c"><b><i class="fa-solid fa-people-group"></i></b></div>
+    </div>
+  </div>
+  <span class="scroll-hint" aria-hidden="true"></span>
 </section>
 
-    <!-- Numerology Section -->
-    <section id="numerology" class="numerology">
-        <h2>The Power of Numerology</h2>
-        <div class="divider"></div>
-        <div class="numerology-content">
-            <div class="numerology-image">
-                <img src="https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8bnVtZXJvbG9neSUyMHByb2Zlc3Npb25hbHxlbnwwfDB8fHwxNzQzNjgxMDM5fDA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Numerology Image">
-               
-            </div>
-            <div class="numerology-text">
-                <p>Numerology is the mystical study of numbers and their influence on human life. Each number has its unique vibration and energy that can reveal profound insights about your personality, talents, and life path.</p>
-                <ul>
-                    <li><span class="checkmark">✔</span> <strong>Life Path Number</strong><br>Discover your core purpose and the journey you’re meant to take in this lifetime.</li>
-                    <li><span class="checkmark">✔</span> <strong>Expression Number</strong><br>Uncover your natural abilities and how you express yourself to the world.</li>
-                    <li><span class="checkmark">✔</span> <strong>Soul Urge Number</strong><br>Reveal your inner desires, motivations, and what truly fulfills your soul.</li>
-                </ul>
-                <p class="quote">"Understanding your numerology chart can unlock doors to self-discovery and help align your actions with your true purpose."</p>
-                <a href="https://www.call-astro.com/numerology-report" class="btn">Get Your Numerology Report</a>
-            </div>
-        </div>
-    </section>
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span><i class="fa-solid fa-star"></i>Free Kundli</span><span><i class="fa-solid fa-star"></i>Kundli Matching</span><span><i class="fa-solid fa-star"></i>Vastu Software</span><span><i class="fa-solid fa-star"></i>Numerology</span><span><i class="fa-solid fa-star"></i>Horoscope</span><span><i class="fa-solid fa-star"></i>Shubh Muhurat</span><span><i class="fa-solid fa-star"></i>Book Pooja</span><span><i class="fa-solid fa-star"></i>Prashna Shastra</span><span><i class="fa-solid fa-star"></i>Planet Transit</span>
+    <span><i class="fa-solid fa-star"></i>Free Kundli</span><span><i class="fa-solid fa-star"></i>Kundli Matching</span><span><i class="fa-solid fa-star"></i>Vastu Software</span><span><i class="fa-solid fa-star"></i>Numerology</span><span><i class="fa-solid fa-star"></i>Horoscope</span><span><i class="fa-solid fa-star"></i>Shubh Muhurat</span><span><i class="fa-solid fa-star"></i>Book Pooja</span><span><i class="fa-solid fa-star"></i>Prashna Shastra</span><span><i class="fa-solid fa-star"></i>Planet Transit</span>
+  </div>
+</div>
 
-    <!-- Vastu Section -->
-    <section id="vastu" class="vastu">
-        <h2>Vastu Shastra Harmony</h2>
-        <div class="divider"></div>
-        <p class="vastu-subtitle">Balance the five elements in your living and working spaces to create positive energy flow and prosperity.</p>
-        <div class="vastu-content">
-            <div class="vastu-text">
-                <p>Vastu Shastra is the ancient Indian science of architecture and design that aligns living spaces with natural forces. When your home or office follows Vastu principles, it becomes a conduit for positive energy.</p>
-                <h3>Our Vastu Services Include:</h3>
-                <ul>
-                    <li><span class="checkmark">✔</span> Comprehensive property analysis and assessment</li>
-                    <li><span class="checkmark">✔</span> Room-by-room Vastu consultation and recommendations</li>
-                    <li><span class="checkmark">✔</span> Vastu-compliant layout and design planning</li>
-                    <li><span class="checkmark">✔</span> Energy balancing and space clearing</li>
-                </ul>
-                <div class="vastu-buttons">
-                    <a href="https://www.call-astro.com/vastu-page" class="btn">Book Vastu Consultation</a>
-                    <a href="https://www.call-astro.com/vastu-page" class="btn">Download Vastu App</a>
-                </div>
-            </div>
-            <div class="vastu-image">
-                <img src="https://www.sharifsells.com/wp-content/uploads/2021/04/vastru-1.jpg" alt="Vastu Image">
-                
-            </div>
-        </div>
-        <div class="vastu-subservices">
-            <div class="subservice-card">
-                <div class="subservice-icon"><i class="fas fa-home"></i></div>
-                <h3>Home Vastu</h3>
-                <p>Create a harmonious living space that nurtures family relationships and personal growth.</p>
-            </div>
-            <div class="subservice-card">
-                <div class="subservice-icon"><i class="fas fa-building"></i></div>
-                <h3>Office Vastu</h3>
-                <p>Optimize your workspace for productivity, success, and positive dynamics.</p>
-            </div>
-            <div class="subservice-card">
-                <div class="subservice-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Commercial Vastu</h3>
-                <p>Enhance business prosperity and customer flow with strategic Vastu principles.</p>
-            </div>
-            <div class="subservice-card">
-                <div class="subservice-icon"><i class="fas fa-tools"></i></div>
-                <h3>Vastu Correction</h3>
-                <p>Remedies and solutions for existing properties without major structural changes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Personal Astrology Consultation Section -->
-    <section id="consultation" class="consultation">
-        <h2>Personal Astrology Consultation</h2>
-        <div class="divider"></div>
-        <div class="consultation-content">
-            <div class="consultation-image">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8Y29uc3VsdGF0aW9uJTIwcHJvZmVzc2lvbmFsfGVufDB8MHx8fDE3NDM0OTAzOTh8MA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Consultation Image">
-               
-            </div>
-            <div class="consultation-text">
-                <p>Get personalized guidance from our expert astrologers who combine ancient wisdom with modern insight. Our consultations provide clarity and direction for life’s most important questions.</p>
-                <div class="consultation-options">
-                    <div class="option-card">
-                        <div class="option-icon"><i class="fas fa-clock"></i></div>
-                        <h3>30-Minute Session</h3>
-                        <p>Quick guidance for specific questions about career, relationships, or finances.</p>
-                        <p class="price">$49</p>
-                    </div>
-                    <div class="option-card">
-                        <div class="option-icon"><i class="fas fa-clock"></i></div>
-                        <h3>60-Minute Session</h3>
-                        <p>Comprehensive reading covering multiple life areas with detailed insights.</p>
-                        <p class="price">$89</p>
-                    </div>
-                    <div class="option-card">
-                        <div class="option-icon"><i class="fas fa-calendar"></i></div>
-                        <h3>Yearly Forecast</h3>
-                        <p>Detailed prediction for the coming year with monthly breakdowns and transits.</p>
-                        <p class="price">$129</p>
-                    </div>
-                    <div class="option-card">
-                        <div class="option-icon"><i class="fas fa-heart"></i></div>
-                        <h3>Relationship Analysis</h3>
-                        <p>Compatibility assessment for couples with guidance for harmony and growth.</p>
-                        <p class="price">$99</p>
-                    </div>
-                </div>
-                <p class="quote">"The consultation was eye-opening. I received practical guidance that helped me make important life decisions with confidence." — Sarah K.</p>
-                <a href="https://www.call-astro.com/chat-with-astrologer" class="btn">Book Your Consultation</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section id="testimonials" class="testimonials">
-        <h2>What Our Clients Say</h2>
-        <div class="divider"></div>
-        <p class="testimonials-subtitle">Discover how our astrology and spiritual guidance services have transformed lives and provided clarity to our clients.</p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-icon">JP</div>
-                <h3>James Peterson</h3>
-                <p>Business Owner</p>
-                <div class="stars">★★★★★</div>
-                <p class="quote">"The numerology report was incredibly accurate. It revealed patterns in my business cycles that helped me make better timing decisions for major investments."</p>
-                <p class="service">Service: Numerology Report</p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-icon">SM</div>
-                <h3>Sarah Mitchell</h3>
-                <p>Interior Designer</p>
-                <div class="stars">★★★★★</div>
-                <p class="quote">"After implementing the Vastu suggestions for my home office, I noticed a remarkable improvement in creativity and productivity. My clients love the energy in the space too!"</p>
-                <p class="service">Service: Vastu Consultation</p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-icon">RK</div>
-                <h3>Rachel Kumar</h3>
-                <p>Healthcare Professional</p>
-                <div class="stars">★★★★★</div>
-                <p class="quote">"The relationship compatibility analysis was eye-opening. It helped my partner and I understand our communication patterns and strengthen our bond."</p>
-                <p class="service">Service: Relationship Analysis</p>
-            </div>
-        </div>
-        <div class="featured-story">
-            <div class="featured-image">
-                <img src="https://images.unsplash.com/photo-1423248515266-98acb914c861?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8d2FubmVlciUyMHpvZWslMjBiZW50JTIwbmFhciUyMGVlbiUyMGJla3dhbWUlMjB2YWttYW4lMjB2b29yJTIwaGV0JTIwdWl0dm9lcmVuJTIwdmFuJTIwa2xpbmtlcndlcmtlbiUyMHJpb2xlcmluZ3N3ZXJrZW4lMkMlMjBiZW50JTIwYmlqJTIwYWxyJTIwaW5mcmFzdHJ1Y3R1dXJ3ZXJrZW4lMjBoZXQlMjBqdWlzdGUlMjBhZHJlcy4lMjB0ZXN0aW1vbmlhbHMlMjBmZWVkYmFjayUyMGF1dGhlbnRpYyUyMHRydXN0d29ydGh5fGVufDB8MXx8fDE3NDM2NzY5MTN8MA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Featured Story Image">
-                
-            </div>
-            <div class="featured-text">
-                <div class="stars">★★★★★</div>
-                <h3>Featured Client Story</h3>
-                <h4>Michael & Emma’s Journey</h4>
-                <p>"After years of business setbacks, we consulted with the astrology team for guidance. The yearly forecast helped us time our new venture launch perfectly, and the Vastu consultation transformed our office space. Six months later, our business is thriving beyond expectations."</p>
-                <p class="client">Michael & Emma Thornton, Small Business Owners, California</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-   <!-- Footer Section -->
-<footer id="footer" class="footer">
-    <div class="footer-content">
-        <div class="footer-column">
-            <div class="footer-logo">
-                <img src="./images/VasVenturesLogo.png" alt="VAS VENTURES Pvt Ltd Logo" /> 
-            </div>
-            <p>VAS VENTURES Pvt Ltd is the proud parent company of Call-Astro, India's premier platform for online astrology predictions. Through Call-Astro, you can connect with the best astrologers from India to get answers to all your worries. Navigate your future with accurate Kundli predictions and get the best guidance for marriage, love life, career, or health via call, chat, queries, or detailed reports.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div class="footer-column">
-            <h3>Useful Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Terms of service</a></li>
-                <li><a href="#">Privacy policy</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h3>Our Services</h3>
-            <ul>
-                <li><a href="#">Free Kundli</a></li>
-                <li><a href="#">Kundli Matching</a></li>
-                <li><a href="#">Chat with Astrologer</a></li>
-                <li><a href="#">Talk to Astrologer</a></li>
-                <li><a href="#">Today Panchang</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-map-marker-alt"></i> 417, Manhattan Street, Mahagun Moderne, Sector 78, Noida, Uttar Pradesh, India 201304</p>
-            <p><i class="fas fa-phone"></i> Phone: +91-9650459807</p>
-            <p><i class="fas fa-envelope"></i> Email: info@vasventures.in</p>
-            <!--<div class="app-links">-->
-            <!--    <a href="#"><img src="google-play.png" alt="Google Play" /></a>-->
-            <!--    <a href="#"><img src="app-store.png" alt="App Store" /></a>-->
-            <!--</div>-->
-        </div>
+<!-- ===================== OUR VENTURES (carousel) ===================== -->
+<section class="sec ventures" id="ventures">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__eyebrow">Our Products</span>
+      <h2 class="sec__title">One company. <span class="text-gold">Three ventures.</span></h2>
+      <p class="sec__sub">Every VAS Ventures product shares one idea: guidance and safety for the people you care about, built on technology you can trust.</p>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 VAS VENTURES ALL RIGHTS RESERVED | DESIGNED BY VAS VENTURES</p>
+
+    <div class="carousel reveal" id="ventureCarousel" aria-roledescription="carousel" aria-label="Our products">
+      <div class="carousel__viewport">
+        <div class="carousel__track">
+
+          <!-- Call-Astro -->
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+            <article class="venture glass" style="--glow:radial-gradient(circle,rgba(255,157,66,.7),transparent 65%);--accent:var(--gold)">
+              <div>
+                <span class="venture__tag"><i class="fa-solid fa-star-and-crescent" style="color:var(--gold)"></i>Flagship · Astrology</span>
+                <h3>Call-Astro</h3>
+                <p>India's online astrology platform. Connect with experienced astrologers by chat, get your Kundli, match horoscopes, plan with Vastu and find the right muhurat.</p>
+                <ul>
+                  <li><i class="fa-solid fa-check"></i>Chat with astrologers for marriage, career, love &amp; health questions</li>
+                  <li><i class="fa-solid fa-check"></i>Free Kundli, matchmaking, horoscope &amp; planet transits</li>
+                  <li><i class="fa-solid fa-check"></i>Vastu software, numerology &amp; 9+ astrology tools</li>
+                </ul>
+                <div class="venture__actions">
+                  <a class="btn btn-gold" href="https://www.call-astro.com/">Visit Call-Astro <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-glass" href="https://www.call-astro.com/chat-with-astrologer"><i class="fa-regular fa-comment-dots"></i>Start a chat</a>
+                </div>
+              </div>
+              <div class="venture__art" aria-hidden="true">
+                <div class="phone"><div class="phone__screen">
+                  <div class="ui-title">Your Kundli</div>
+                  <div class="ui-chart"></div>
+                  <div class="ui-row"><span class="ui-av">A</span><div>Astrologer online<small>Vedic · Vastu</small></div><span class="ui-pill">Chat</span></div>
+                  <div class="ui-row"><span class="ui-av">♥</span><div>Kundli matching<small>Guna milan</small></div></div>
+                  <span class="ui-btn">Chat with Astrologer</span>
+                </div></div>
+                <div class="badge-float glass" style="left:2%;top:16%"><i class="fa-solid fa-dharmachakra"></i>Free Kundli</div>
+                <div class="badge-float glass" style="right:0;bottom:18%;animation-delay:-2s"><i class="fa-regular fa-calendar-check"></i>Shubh Muhurat</div>
+              </div>
+            </article>
+          </div>
+
+          <!-- EyezonKid -->
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+            <article class="venture glass" style="--glow:radial-gradient(circle,rgba(46,196,182,.65),transparent 65%);--accent:var(--teal)">
+              <div>
+                <span class="venture__tag"><i class="fa-solid fa-shield-heart" style="color:var(--teal)"></i>Family safety</span>
+                <h3>EyezonKid</h3>
+                <p>Parental control that helps families build healthy screen habits — without reading private chats or recording the screen.</p>
+                <ul>
+                  <li><i class="fa-solid fa-check"></i>Screen-time limits, schedules &amp; app blocking</li>
+                  <li><i class="fa-solid fa-check"></i>Usage reports across multiple child devices</li>
+                  <li><i class="fa-solid fa-check"></i>Starts with a 3-day free trial</li>
+                </ul>
+                <div class="venture__actions">
+                  <a class="btn btn-gold" href="https://eyezonkid.com/" style="background:linear-gradient(135deg,#a7fff6,#2ec4b6)">Visit EyezonKid <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-glass" href="https://eyezonkid.com/#pricing">See pricing</a>
+                </div>
+              </div>
+              <div class="venture__art" aria-hidden="true">
+                <div class="phone"><div class="phone__screen">
+                  <div class="ui-title">Today's screen time</div>
+                  <div class="ui-row"><span class="ui-av" style="background:linear-gradient(135deg,#ff6b6b,#ff0000);color:#fff">▶</span><div>YouTube<small>32 of 45 min</small><div class="ui-bar"><i style="width:70%"></i></div></div></div>
+                  <div class="ui-row"><span class="ui-av" style="background:linear-gradient(135deg,#a7fff6,#2ec4b6)">⌂</span><div>Homework mode<small>4:00 – 6:00 PM</small></div><span class="ui-pill">On</span></div>
+                  <div class="ui-row"><span class="ui-av" style="background:linear-gradient(135deg,#c4b5fd,#8b5cf6);color:#fff">✕</span><div>Games blocked<small>Until 8:00 PM</small></div></div>
+                  <span class="ui-btn" style="background:linear-gradient(135deg,#a7fff6,#2ec4b6)">Start 3-day free trial</span>
+                </div></div>
+                <div class="badge-float glass" style="left:0;top:20%;--accent:var(--teal)"><i class="fa-solid fa-lock"></i>Private chats stay private</div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Togethr -->
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+            <article class="venture glass" style="--glow:radial-gradient(circle,rgba(139,92,246,.75),transparent 65%);--accent:var(--violet)">
+              <div>
+                <span class="venture__tag"><i class="fa-solid fa-people-group" style="color:#c4b5fd"></i>Community</span>
+                <h3>Togethr</h3>
+                <p>Connect, share and grow together. A community app with simple, secure sign-in using one-time passwords.</p>
+                <ul>
+                  <li><i class="fa-solid fa-check"></i>Join communities and share with people who matter</li>
+                  <li><i class="fa-solid fa-check"></i>Seamless OTP verification — no passwords to remember</li>
+                  <li><i class="fa-solid fa-check"></i>Full control of your account and data</li>
+                </ul>
+                <div class="venture__actions">
+                  <a class="btn btn-gold" href="/togethr-account" style="background:linear-gradient(135deg,#ddd6fe,#8b5cf6);color:#fff">Manage Togethr account <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="venture__art" aria-hidden="true">
+                <div class="phone"><div class="phone__screen">
+                  <div class="ui-title">Your circles</div>
+                  <div class="ui-row"><span class="ui-av" style="background:linear-gradient(135deg,#ddd6fe,#8b5cf6);color:#fff">F</span><div>Family<small>3 new posts</small></div></div>
+                  <div class="ui-row"><span class="ui-av" style="background:linear-gradient(135deg,#bfdbfe,#4a8cff);color:#fff">C</span><div>College friends<small>Photo shared</small></div></div>
+                  <div class="ui-row"><span class="ui-av">Y</span><div>Yoga club<small>Event tomorrow</small></div></div>
+                  <span class="ui-btn" style="background:linear-gradient(135deg,#ddd6fe,#8b5cf6);color:#fff">Verify with OTP</span>
+                </div></div>
+                <div class="badge-float glass" style="right:2%;top:14%;--accent:#c4b5fd"><i class="fa-solid fa-key"></i>OTP sign-in</div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+      <div class="carousel__nav">
+        <button class="c-btn" data-prev aria-label="Previous product"><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="dots" role="tablist"></div>
+        <div class="progress" aria-hidden="true"><span></span></div>
+        <button class="c-btn" data-next aria-label="Next product"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== ASTROLOGY SERVICES ===================== -->
+<section class="sec" id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__eyebrow">Astrology Services</span>
+      <h2 class="sec__title">Guidance for every <span class="text-gold">turn of life</span></h2>
+      <p class="sec__sub">From your birth chart to the right time for a new beginning — all on Call-Astro.</p>
+    </div>
+    <div class="grid grid--4">
+      <a class="card glass reveal" href="https://www.call-astro.com/vastu-software"><span class="card__ico"><i class="fa-solid fa-compass"></i></span><h3>Vastu Software</h3><p>Analyse floor plans and directions to balance energy at home and work.</p><span class="card__go">Explore <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.05s" href="https://www.call-astro.com/numerology-insights"><span class="card__ico card__ico--c"><i class="fa-solid fa-hashtag"></i></span><h3>Numerology Report</h3><p>See how the numbers in your name and birth date shape your path.</p><span class="card__go">Get report <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.1s" href="https://www.call-astro.com/free-kundli"><span class="card__ico"><i class="fa-solid fa-dharmachakra"></i></span><h3>Free Kundli</h3><p>Generate your detailed birth chart with planetary positions.</p><span class="card__go">Create Kundli <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.15s" href="https://www.call-astro.com/horoscopes"><span class="card__ico card__ico--c"><i class="fa-solid fa-star-and-crescent"></i></span><h3>Horoscope</h3><p>Daily, weekly and yearly horoscopes for every zodiac sign.</p><span class="card__go">Read now <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" href="https://www.call-astro.com/planetary"><span class="card__ico card__ico--c"><i class="fa-solid fa-earth-asia"></i></span><h3>Planet Transit</h3><p>Track how planetary movements affect your sign right now.</p><span class="card__go">View transits <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.05s" href="https://www.call-astro.com/kundli-matching"><span class="card__ico"><i class="fa-solid fa-heart"></i></span><h3>Matchmaking</h3><p>Kundli matching and compatibility insights for a happy marriage.</p><span class="card__go">Match now <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.1s" href="https://www.call-astro.com/shubh-muhrat"><span class="card__ico card__ico--c"><i class="fa-regular fa-calendar-check"></i></span><h3>Shubh Muhurat</h3><p>Find auspicious dates for weddings, griha pravesh and new ventures.</p><span class="card__go">Find muhurat <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass reveal" style="--d:.15s" href="https://www.call-astro.com/pooja"><span class="card__ico"><i class="fa-solid fa-om"></i></span><h3>Book Pooja</h3><p>Book poojas performed by experienced pandits, from anywhere.</p><span class="card__go">Book pooja <i class="fa-solid fa-arrow-right"></i></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VASTU SPOTLIGHT ===================== -->
+<section class="sec" id="vastu" style="padding-top:0">
+  <div class="wrap spot">
+    <div class="spot__visual glass reveal">
+      <img src="images/zodiac-wheel.webp" width="900" height="736" alt="" loading="lazy" decoding="async">
+      <div class="win glass" aria-hidden="true">
+        <div class="win__top"><i></i><i></i><i></i></div>
+        <div class="win__row"><span class="compass">N</span><span>Entrance · North-East</span><span>Ideal</span></div>
+        <div class="win__row"><span class="compass">SE</span><span>Kitchen · South-East</span><span>Ideal</span></div>
+        <div class="win__row"><span class="compass">SW</span><span>Master bedroom · South-West</span><span>Ideal</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="--d:.1s">
+      <div class="sec__head left" style="margin-bottom:0">
+        <span class="sec__eyebrow">Vastu Software</span>
+        <h2 class="sec__title">Harmony for every <span class="text-gold">space you live in</span></h2>
+        <p class="sec__sub">Vastu Shastra is the ancient Indian science of aligning spaces with natural forces. Our Vastu software brings it to your floor plan — for homes, offices and shops.</p>
+      </div>
+      <ul class="checks">
+        <li><i class="fa-solid fa-check"></i><div><b>Direction-wise analysis</b><span>Check every room, entrance and zone against Vastu principles.</span></div></li>
+        <li><i class="fa-solid fa-check"></i><div><b>Home, office &amp; commercial</b><span>Plans for living spaces, workplaces and businesses.</span></div></li>
+        <li><i class="fa-solid fa-check"></i><div><b>Remedies without demolition</b><span>Practical corrections for existing properties, plus Vastu colours.</span></div></li>
+      </ul>
+      <div class="btns">
+        <a class="btn btn-gold" href="https://www.call-astro.com/vastu-software">Try Vastu Software <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="btn btn-glass" href="https://www.call-astro.com/vastu-report-online">Get a Vastu report</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ASTROLOGY TOOLS (rail) ===================== -->
+<section class="sec" id="tools" style="padding-top:0">
+  <div class="wrap">
+    <div class="rail-head reveal">
+      <div class="sec__head left">
+        <span class="sec__eyebrow">Astrology Tools</span>
+        <h2 class="sec__title">Smart tools, <span class="text-gold">instant answers</span></h2>
+      </div>
+      <div class="rail-ctrl">
+        <button class="c-btn" data-rail-prev aria-label="Scroll tools left"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="c-btn" data-rail-next aria-label="Scroll tools right"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="rail reveal" id="toolRail" tabindex="0" aria-label="Astrology tools">
+      <a class="card glass" href="https://www.call-astro.com/graphology"><span class="tool-num">01</span><span class="card__ico"><i class="fa-solid fa-pen-nib"></i></span><h3>Graphology Report</h3><p>What your handwriting reveals about your personality.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/ayadi-calculator"><span class="tool-num">02</span><span class="card__ico card__ico--c"><i class="fa-solid fa-calculator"></i></span><h3>Ayadi Calculator</h3><p>Traditional Ayadi calculations for building measurements.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/hawan-muhurat"><span class="tool-num">03</span><span class="card__ico"><i class="fa-solid fa-fire"></i></span><h3>Hawan Muhurat</h3><p>Auspicious timings for hawan and havan rituals.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/lucky-dates"><span class="tool-num">04</span><span class="card__ico card__ico--c"><i class="fa-solid fa-mobile-screen"></i></span><h3>Mobile Lucky Dates</h3><p>Lucky dates and numbers matched to your mobile number.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/theft-finder"><span class="tool-num">05</span><span class="card__ico"><i class="fa-solid fa-magnifying-glass"></i></span><h3>Theft Finder</h3><p>Prashna-based insight into lost or stolen items.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/watch-predictive"><span class="tool-num">06</span><span class="card__ico card__ico--c"><i class="fa-regular fa-clock"></i></span><h3>Watch Predictive</h3><p>Time-based predictions from the moment you ask.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/vastu-color"><span class="tool-num">07</span><span class="card__ico"><i class="fa-solid fa-palette"></i></span><h3>Vastu Color</h3><p>The right colours for each room and direction.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/prashna-shastra"><span class="tool-num">08</span><span class="card__ico card__ico--c"><i class="fa-solid fa-circle-question"></i></span><h3>Prashna Shastra</h3><p>Answers to a specific question, from the time it's asked.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+      <a class="card glass" href="https://www.call-astro.com/vastu-report-online"><span class="tool-num">09</span><span class="card__ico"><i class="fa-solid fa-file-lines"></i></span><h3>Vastu Report</h3><p>A detailed online Vastu report for your property.</p><span class="card__go">Open tool <i class="fa-solid fa-arrow-right"></i></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOP ===================== -->
+<section class="sec" id="shop" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__eyebrow">Shop</span>
+      <h2 class="sec__title">Sacred services, <span class="text-gold">delivered online</span></h2>
+    </div>
+    <div class="grid shop">
+      <a class="card glass prod reveal" href="https://www.call-astro.com/pooja"><div class="prod__art" style="--art:linear-gradient(135deg,#ff9d42,#c2410c)"><span class="halo"></span><i class="fa-solid fa-om"></i></div><div class="prod__body"><h3>Pooja</h3><p>Book poojas for every occasion, performed by experienced pandits.</p><span class="card__go">Book now <i class="fa-solid fa-arrow-right"></i></span></div></a>
+      <a class="card glass prod reveal" style="--d:.05s" href="https://www.call-astro.com/astromall"><div class="prod__art" style="--art:linear-gradient(135deg,#8b5cf6,#3b1d8f)"><span class="halo"></span><i class="fa-solid fa-hands-praying"></i></div><div class="prod__body"><h3>Jaap</h3><p>Mantra jaap sankalp done on your behalf, with updates.</p><span class="card__go">Explore <i class="fa-solid fa-arrow-right"></i></span></div></a>
+      <a class="card glass prod reveal" style="--d:.1s" href="https://www.call-astro.com/vastu-software"><div class="prod__art" style="--art:linear-gradient(135deg,#4a8cff,#1e3a8a)"><span class="halo"></span><i class="fa-solid fa-laptop-code"></i></div><div class="prod__body"><h3>Software</h3><p>Vastu software for architects, consultants and home owners.</p><span class="card__go">Get software <i class="fa-solid fa-arrow-right"></i></span></div></a>
+      <a class="card glass prod reveal" style="--d:.15s" href="https://www.call-astro.com/astromall"><div class="prod__art" style="--art:linear-gradient(135deg,#fde68a,#d97706)"><span class="halo"></span><i class="fa-solid fa-coins"></i></div><div class="prod__body"><h3>Gold</h3><p>Auspicious gold, available through AstroMall.</p><span class="card__go">Shop gold <i class="fa-solid fa-arrow-right"></i></span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NUMEROLOGY ===================== -->
+<section class="sec" id="numerology" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__eyebrow">The Power of Numerology</span>
+      <h2 class="sec__title">Every number has <span class="text-gold">a vibration</span></h2>
+      <p class="sec__sub">Numerology studies how numbers influence your personality, talents and life path. Three numbers tell most of your story.</p>
+    </div>
+    <div class="nums">
+      <div class="num glass reveal"><div class="num__n">1</div><h3>Life Path Number</h3><p>Your core purpose and the journey you're meant to take in this lifetime.</p></div>
+      <div class="num glass reveal" style="--d:.08s"><div class="num__n">5</div><h3>Expression Number</h3><p>Your natural abilities and how you express yourself to the world.</p></div>
+      <div class="num glass reveal" style="--d:.16s"><div class="num__n">9</div><h3>Soul Urge Number</h3><p>Your inner desires, motivations and what truly fulfils you.</p></div>
+    </div>
+    <p class="quote reveal">"Understanding your numerology chart can unlock doors to self-discovery and help align your actions with your true purpose."</p>
+    <div class="btns reveal" style="justify-content:center;margin-top:28px"><a class="btn btn-gold" href="https://www.call-astro.com/numerology-insights">Get your Numerology Report <i class="fa-solid fa-arrow-right"></i></a></div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="sec" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__eyebrow">How it works</span>
+      <h2 class="sec__title">Clarity in <span class="text-gold">three steps</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step glass reveal"><span class="step__n">01</span><h3>Choose a service</h3><p>Pick a Kundli, report, tool or consultation that fits your question.</p></div>
+      <div class="step glass reveal" style="--d:.08s"><span class="step__n">02</span><h3>Connect with an astrologer</h3><p>Chat with an experienced astrologer on Call-Astro, from anywhere.</p></div>
+      <div class="step glass reveal" style="--d:.16s"><span class="step__n">03</span><h3>Get your guidance</h3><p>Receive clear, practical guidance for marriage, career, health and more.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta glass reveal">
+      <div>
+        <h2>Your stars have something to say.</h2>
+        <p>Talk to an astrologer today and get answers about marriage, love, career or health.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn-gold" href="https://www.call-astro.com/chat-with-astrologer"><i class="fa-regular fa-comment-dots"></i>Chat with Astrologer</a>
+        <a class="btn btn-glass" href="https://www.call-astro.com/free-kundli">Free Kundli</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot" id="footer">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="foot__logo" href="/"><img src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures" loading="lazy"></a>
+        <p>VAS Ventures Pvt. Ltd. is the parent company of Call-Astro, India's platform for online astrology predictions, and of EyezonKid and Togethr. Connect with astrologers for guidance on marriage, love, career and health — by chat, queries or detailed reports.</p>
+      </div>
+      <div>
+        <h4>Our Products</h4>
+        <ul>
+          <li><a href="https://www.call-astro.com/">Call-Astro</a></li>
+          <li><a href="https://eyezonkid.com/">EyezonKid</a></li>
+          <li><a href="/togethr-account">Togethr account</a></li>
+          <li><a href="https://www.call-astro.com/vastu-software">Vastu Software</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://www.call-astro.com/free-kundli">Free Kundli</a></li>
+          <li><a href="https://www.call-astro.com/kundli-matching">Kundli Matching</a></li>
+          <li><a href="https://www.call-astro.com/chat-with-astrologer">Chat with Astrologer</a></li>
+          <li><a href="https://www.call-astro.com/horoscopes">Horoscope</a></li>
+          <li><a href="https://www.call-astro.com/blogs">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="foot__contact">
+          <li><i class="fa-solid fa-location-dot"></i><span>417, Manhattan Street, Mahagun Moderne, Sector 78, Noida, Uttar Pradesh 201304, India</span></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+919650459807">+91-9650459807</a></li>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@vasventures.in">info@vasventures.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span id="yr">2026</span> VAS Ventures Pvt. Ltd. All rights reserved.</span>
+      <span>Made with <i class="fa-solid fa-heart" style="color:var(--rose)"></i> in India</span>
+    </div>
+  </div>
 </footer>
 
-    <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('.nav ul');
-        hamburger.addEventListener('click', () => {
-            navUl.classList.toggle('active');
-        });
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-        // Sticky Header Shrink
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
-            }
-        });
-    </script>
-    
+  /* ---------- navbar: scrolled state + mobile menu ---------- */
+  var nav = document.getElementById('nav'), burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
+  function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 30); }
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  function setMenu(open) {
+    nav.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function () { setMenu(!nav.classList.contains('is-open')); });
+  mnav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+  /* ---------- reveal on scroll ---------- */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' }) : null;
+  document.querySelectorAll('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('is-in'); });
+
+  /* ---------- card spotlight follows the mouse ---------- */
+  document.querySelectorAll('.card').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* ---------- products carousel (autoplay, dots, swipe) ---------- */
+  var car = document.getElementById('ventureCarousel');
+  if (car) {
+    var track = car.querySelector('.carousel__track'), slides = track.children, dotsBox = car.querySelector('.dots'),
+        bar = car.querySelector('.progress span'), idx = 0, DURATION = 6000, t0 = performance.now(), paused = false, rafId;
+    for (var i = 0; i < slides.length; i++) {
+      var d = document.createElement('button'); d.setAttribute('role', 'tab'); d.setAttribute('aria-label', 'Show product ' + (i + 1));
+      (function (n) { d.addEventListener('click', function () { go(n); }); })(i);
+      dotsBox.appendChild(d);
+    }
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-100 * idx) + '%)';
+      [].forEach.call(dotsBox.children, function (b, k) { b.classList.toggle('is-active', k === idx); b.setAttribute('aria-selected', k === idx); });
+      t0 = performance.now();
+    }
+    car.querySelector('[data-prev]').addEventListener('click', function () { go(idx - 1); });
+    car.querySelector('[data-next]').addEventListener('click', function () { go(idx + 1); });
+    car.addEventListener('mouseenter', function () { paused = true; });
+    car.addEventListener('mouseleave', function () { paused = false; t0 = performance.now() - (parseFloat(bar.style.width) || 0) / 100 * DURATION; });
+    car.addEventListener('focusin', function () { paused = true; });
+    car.addEventListener('focusout', function () { paused = false; });
+    var sx = null;
+    track.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    window.addEventListener('pointerup', function (e) { if (sx === null) return; var dx = e.clientX - sx; if (Math.abs(dx) > 50) go(idx + (dx < 0 ? 1 : -1)); sx = null; });
+    function tick(now) {
+      if (!paused && !reduce) {
+        var f = (now - t0) / DURATION;
+        if (f >= 1) { go(idx + 1); f = 0; }
+        bar.style.width = (f * 100) + '%';
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    go(0); rafId = requestAnimationFrame(tick);
+  }
+
+  /* ---------- tools rail: arrows + gentle autoplay ---------- */
+  var rail = document.getElementById('toolRail');
+  if (rail) {
+    function step(dir) {
+      var card = rail.querySelector('.card'), w = card ? card.getBoundingClientRect().width + 18 : 300;
+      var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+      if (dir > 0 && atEnd) rail.scrollTo({ left: 0, behavior: 'smooth' });
+      else rail.scrollBy({ left: dir * w, behavior: 'smooth' });
+    }
+    document.querySelector('[data-rail-prev]').addEventListener('click', function () { step(-1); });
+    document.querySelector('[data-rail-next]').addEventListener('click', function () { step(1); });
+    var railHover = false, railTimer;
+    rail.addEventListener('mouseenter', function () { railHover = true; });
+    rail.addEventListener('mouseleave', function () { railHover = false; });
+    if (!reduce) railTimer = setInterval(function () { if (!railHover && !document.hidden) step(1); }, 3500);
+  }
+
+  /* ---------- twinkling starfield ---------- */
+  var cv = document.getElementById('stars'), ctx = cv.getContext && cv.getContext('2d');
+  if (ctx) {
+    var stars = [], dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function size() {
+      cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+      var n = Math.round(innerWidth * innerHeight / 9000); stars = [];
+      for (var i = 0; i < n; i++) stars.push({ x: Math.random() * cv.width, y: Math.random() * cv.height, r: (Math.random() * 1.2 + .2) * dpr, p: Math.random() * 6.28, s: Math.random() * .02 + .005 });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (var i = 0; i < stars.length; i++) {
+        var st = stars[i]; st.p += st.s;
+        ctx.globalAlpha = .35 + Math.sin(st.p) * .35;
+        ctx.fillStyle = i % 9 ? '#ffffff' : '#f7c46c';
+        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.283); ctx.fill();
+      }
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    size(); draw(); window.addEventListener('resize', size);
+  }
+
+  /* ---------- pause the hero video when it is off screen ---------- */
+  var vid = document.getElementById('heroVideo');
+  if (vid && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { es.forEach(function (en) { en.isIntersecting ? vid.play().catch(function(){}) : vid.pause(); }); }).observe(vid);
+  }
+})();
+</script>
 </body>
 </html>
