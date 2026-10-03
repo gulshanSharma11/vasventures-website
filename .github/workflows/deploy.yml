@@ -1,0 +1,31 @@
+# Auto-deploy: every push to "main" tells cPanel to pull from GitHub and deploy
+# (using .cpanel.yml) to public_html/vasventures.in.
+# Repository secrets needed (GitHub → Settings → Secrets and variables → Actions):
+#   CPANEL_HOST   cPanel server name (from the cPanel address bar, before :2083)
+#   CPANEL_USER   callastro1
+#   CPANEL_TOKEN  token from cPanel → Manage API Tokens
+name: Deploy vasventures.in
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REPO_ROOT: /home/${{ secrets.CPANEL_USER }}/repositories/vasventures-website
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. cPanel pulls the latest code from GitHub
+        run: |
+          curl -sS -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/VersionControl/update?repository_root=${REPO_ROOT}&branch=main" | tee pull.json
+          grep -q '"status":1' pull.json || { echo "Pull failed"; exit 1; }
+
+      - name: 2. cPanel deploys it to public_html/vasventures.in
+        run: |
+          curl -sS -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/VersionControlDeployment/create?repository_root=${REPO_ROOT}" | tee deploy.json
+          grep -q '"status":1' deploy.json || { echo "Deploy failed"; exit 1; }

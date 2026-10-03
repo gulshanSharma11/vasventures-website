@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Togethr Account Management | Vas Ventures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(145deg, #f5f7fc 0%, #eef2f8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: #1a2a6c;
+        }
+        .togethr-card {
+            max-width: 620px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        .card-header {
+            background: #1a2a6c;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #ffd700;
+        }
+        .card-header i {
+            font-size: 2.8rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin-bottom: 0.75rem;
+        }
+        .card-header h1 { font-size: 1.9rem; font-weight: 700; color: white; margin: 0.5rem 0 0.2rem; }
+        .card-header p { color: rgba(255, 255, 255, 0.85); font-size: 0.9rem; }
+        .card-body { padding: 2rem 2rem 2rem; }
+        .step-indicator { display: flex; justify-content: space-between; margin-bottom: 2rem; position: relative; }
+        .step { text-align: center; flex: 1; position: relative; z-index: 2; }
+        .step-circle {
+            width: 44px; height: 44px; background: #eef2ff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;
+            font-weight: 800; font-size: 1.1rem; color: #1a2a6c; border: 2px solid #cdd9ff;
+        }
+        .step.active .step-circle { background: #ffd700; border-color: #ffcd38; color: #1a2a6c; box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3); }
+        .step.completed .step-circle { background: #10b981; border-color: #34d399; color: white; }
+        .step-label { font-size: 0.75rem; font-weight: 700; color: #4a5568; text-transform: uppercase; }
+        .step.active .step-label { color: #1a2a6c; font-weight: 800; }
+        .progress-line { position: absolute; top: 22px; left: 0; right: 0; height: 2px; background: #e2e8f0; z-index: 1; transform: translateY(-50%); border-radius: 2px; }
+        .progress-fill { height: 100%; width: 0%; background: #ffd700; transition: width 0.4s ease; border-radius: 2px; }
+        .form-step { display: none; animation: fadeSlide 0.3s ease; }
+        .form-step.active-step { display: block; }
+        @keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; }
+        .input-group input {
+            width: 100%; padding: 0.85rem 1.2rem; background: white;
+            border: 1px solid #cbd5e1; border-radius: 60px; font-size: 1rem;
+            font-family: 'Open Sans', sans-serif; color: #0f172a; outline: none;
+        }
+        .input-group input:focus { border-color: #ffd700; box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25); }
+        .btn {
+            width: 100%; padding: 0.85rem; border-radius: 60px; font-weight: 700;
+            font-size: 0.9rem; border: none; cursor: pointer; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .btn-primary { background: #1a2a6c; color: white; }
+        .btn-primary:hover { background: #0f1d4a; transform: translateY(-2px); }
+        .btn-secondary { background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; transform: translateY(-2px); }
+        .back-btn { background: #eef2ff; color: #1a2a6c; border: 1px solid #b9c8ff; }
+        .flex-btns { display: flex; gap: 12px; margin-top: 0.5rem; }
+        .flex-btns .btn { flex: 1; }
+        .message-box {
+            margin-top: 1.2rem; padding: 0.9rem 1rem; border-radius: 60px; font-size: 0.85rem;
+            font-weight: 500; display: none; align-items: center; gap: 10px;
+        }
+        .message-box.error { background: #fee2e2; border-left: 4px solid #ef4444; color: #991b1b; display: flex; }
+        .message-box.success { background: #e0f2fe; border-left: 4px solid #0f67b3; color: #0c4a6e; display: flex; }
+        .message-box.info { background: #fff3e3; border-left: 4px solid #f59e0b; color: #92400e; display: flex; }
+        .warning-text {
+            font-size: 0.85rem; font-weight: 700; background: #fff8e7; padding: 10px 16px;
+            border-radius: 60px; color: #b45309; text-align: center; margin-bottom: 1.5rem;
+            border: 1px solid #ffedd5;
+        }
+        .footer-note { text-align: center; font-size: 0.7rem; color: #6c757d; margin-top: 1.5rem; border-top: 1px solid #edf2f7; padding-top: 1rem; }
+        .inline-link { background: none; border: none; color: #1a2a6c; font-weight: 700; cursor: pointer; font-size: 0.75rem; text-decoration: underline; }
+        @media (max-width: 550px) { body { padding: 1rem; } .card-body { padding: 1.5rem; } .step-circle { width: 36px; height: 36px; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+
+<div class="togethr-card">
+    <div class="card-header">
+        <i class="fas fa-users"></i>
+        <h1>Togethr <span style="font-weight: 400;">|</span> Account Hub</h1>
+        <p>Securely manage & delete your account</p>
+    </div>
+    <div class="card-body">
+        <div class="step-indicator">
+            <div class="step" id="step1Indicator"><div class="step-circle">1</div><div class="step-label">Mobile</div></div>
+            <div class="step" id="step2Indicator"><div class="step-circle">2</div><div class="step-label">Verify OTP</div></div>
+            <div class="step" id="step3Indicator"><div class="step-circle">3</div><div class="step-label">Confirm Delete</div></div>
+            <div class="progress-line"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- Step 1: Send OTP -->
+        <div class="form-step active-step" id="step1Form">
+            <div class="input-group">
+                <label><i class="fas fa-mobile-alt"></i> Mobile Number</label>
+                <input type="tel" id="mobileNumber" placeholder="Enter 10-digit mobile number" autocomplete="off">
+            </div>
+            <button class="btn btn-primary" id="sendOtpBtn"><i class="fas fa-paper-plane"></i> Send OTP</button>
+            <div id="step1Message" class="message-box"></div>
+            <div class="footer-note"><i class="fas fa-lock"></i> OTP will be sent to verify ownership</div>
+        </div>
+
+        <!-- Step 2: Verify OTP -->
+        <div class="form-step" id="step2Form">
+            <div class="input-group">
+                <label><i class="fas fa-key"></i> One‑Time Password</label>
+                <input type="text" id="otpCode" placeholder="Enter 4-6 digit OTP" maxlength="6" autocomplete="off">
+            </div>
+            <div class="flex-btns">
+                <button class="btn back-btn" id="backToStep1Btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="btn btn-primary" id="verifyOtpBtn"><i class="fas fa-check-circle"></i> Verify OTP</button>
+            </div>
+            <div id="step2Message" class="message-box"></div>
+            <div class="footer-note">
+                <i class="fas fa-clock"></i> Didn't receive? 
+                <button id="resendOtpBtn" class="inline-link">Resend OTP</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Confirm Delete -->
+        <div class="form-step" id="step3Form">
+            <div class="warning-text"><i class="fas fa-exclamation-triangle"></i> WARNING: This action is permanent & irreversible!</div>
+            <p style="color:#334155; font-size:0.85rem; margin-bottom:1.2rem; text-align:center;">All your data, connections, and profile will be erased forever.</p>
+            <div class="input-group">
+                <label>Type <span style="color:#b45309; font-weight:800;">"DELETE"</span> to confirm</label>
+                <input type="text" id="confirmDeleteText" placeholder="DELETE" autocomplete="off">
+            </div>
+            <div class="flex-btns">
+                <button class="btn back-btn" id="backToStep2Btn"><i class="fas fa-chevron-left"></i> Back</button>
+                <button class="btn btn-danger" id="finalDeleteAccountBtn" disabled><i class="fas fa-trash-alt"></i> Permanently Delete</button>
+            </div>
+            <div id="step3Message" class="message-box"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ======================== API Endpoints ========================
+    const SEND_OTP_API = '/proxy.php?endpoint=send-otp';
+    const VERIFY_OTP_API = '/proxy.php?endpoint=verify-otp';
+    const DELETE_USER_API = '/proxy.php?endpoint=delete-account';
+
+    // ======================== NO TOKEN IN FRONTEND! ========================
+    // The token is added server-side in proxy.php
+    // Only Content-Type header is needed
+
+    // ======================== Global State ========================
+    let currentStep = 1;
+    let otpId = null;
+    let authToken = null;
+    let verifiedMobile = null;
+
+    // DOM Elements
+    const step1Form = document.getElementById('step1Form');
+    const step2Form = document.getElementById('step2Form');
+    const step3Form = document.getElementById('step3Form');
+    const step1Indicator = document.getElementById('step1Indicator');
+    const step2Indicator = document.getElementById('step2Indicator');
+    const step3Indicator = document.getElementById('step3Indicator');
+    const progressFill = document.getElementById('progressFill');
+
+    const mobileInput = document.getElementById('mobileNumber');
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const step1MessageDiv = document.getElementById('step1Message');
+    const otpInput = document.getElementById('otpCode');
+    const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+    const step2MessageDiv = document.getElementById('step2Message');
+    const backToStep1Btn = document.getElementById('backToStep1Btn');
+    const resendOtpBtn = document.getElementById('resendOtpBtn');
+    const confirmDeleteInput = document.getElementById('confirmDeleteText');
+    const finalDeleteBtn = document.getElementById('finalDeleteAccountBtn');
+    const step3MessageDiv = document.getElementById('step3Message');
+    const backToStep2Btn = document.getElementById('backToStep2Btn');
+
+    function updateStepUI() {
+        step1Form.classList.remove('active-step');
+        step2Form.classList.remove('active-step');
+        step3Form.classList.remove('active-step');
+        if (currentStep === 1) step1Form.classList.add('active-step');
+        if (currentStep === 2) step2Form.classList.add('active-step');
+        if (currentStep === 3) step3Form.classList.add('active-step');
+
+        const steps = [step1Indicator, step2Indicator, step3Indicator];
+        steps.forEach((step, idx) => {
+            step.classList.remove('active', 'completed');
+            if (idx + 1 === currentStep) step.classList.add('active');
+            if (idx + 1 < currentStep) step.classList.add('completed');
+        });
+        let widthPercent = 0;
+        if (currentStep === 2) widthPercent = 50;
+        if (currentStep === 3) widthPercent = 100;
+        progressFill.style.width = widthPercent + '%';
+    }
+
+    function showMessage(box, message, type = 'error') {
+        const icon = type === 'error' ? 'fa-circle-exclamation' : (type === 'success' ? 'fa-circle-check' : 'fa-info-circle');
+        box.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+        box.className = `message-box ${type}`;
+        box.style.display = 'flex';
+        setTimeout(() => {
+            if (box.style.display === 'flex') {
+                setTimeout(() => { box.style.display = 'none'; }, 4500);
+            }
+        }, 100);
+    }
+
+    function clearMessage(box) { box.style.display = 'none'; box.innerHTML = ''; }
+
+    function normalizeMobile(mobile) {
+        let cleaned = mobile.trim().replace(/[\s\-\(\)]/g, '');
+        if (cleaned.startsWith('+')) {
+            let match = cleaned.match(/\+(\d+)/);
+            return match ? match[1] : cleaned;
+        }
+        if (cleaned.match(/^[0-9]{10}$/)) return cleaned;
+        if (cleaned.match(/^91[0-9]{10}$/)) return cleaned.substring(2);
+        return cleaned;
+    }
+
+    // Step 1: Send OTP - NO Authorization header needed (proxy adds it)
+    async function sendOtp() {
+        let mobile = mobileInput.value.trim();
+        if (!mobile) { showMessage(step1MessageDiv, 'Please enter mobile number', 'error'); return; }
+        
+        const mobileNumber = normalizeMobile(mobile);
+        if (!mobileNumber.match(/^[0-9]{10}$/)) {
+            showMessage(step1MessageDiv, 'Enter valid 10-digit mobile number', 'error');
+            return;
+        }
+
+        sendOtpBtn.disabled = true;
+        sendOtpBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+        clearMessage(step1MessageDiv);
+
+        try {
+            const response = await fetch(SEND_OTP_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ countryCode: "+91", mobileNumber: mobileNumber })
+            });
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                otpId = data.data.userId;
+                verifiedMobile = mobileNumber;
+                showMessage(step1MessageDiv, `OTP sent to ${mobileNumber}`, 'success');
+                currentStep = 2;
+                updateStepUI();
+                otpInput.value = '';
+                clearMessage(step2MessageDiv);
+            } else {
+                showMessage(step1MessageDiv, data.message || data.error || 'Failed to send OTP', 'error');
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage(step1MessageDiv, 'Network error. Please try again.', 'error');
+        } finally {
+            sendOtpBtn.disabled = false;
+            sendOtpBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP';
+        }
+    }
+
+    // Step 2: Verify OTP - NO Authorization header needed (proxy adds it)
+    async function verifyOtp() {
+        const otp = otpInput.value.trim();
+        if (!otp) { showMessage(step2MessageDiv, 'Please enter OTP', 'error'); return; }
+        if (!otpId) { showMessage(step2MessageDiv, 'Session expired. Go back and resend OTP.', 'error'); return; }
+
+        verifyOtpBtn.disabled = true;
+        verifyOtpBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Verifying...';
+        clearMessage(step2MessageDiv);
+
+        try {
+            const response = await fetch(VERIFY_OTP_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ otpId: otpId, enteredOtp: otp })
+            });
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                authToken = data.data.authToken;
+                showMessage(step2MessageDiv, 'OTP verified successfully!', 'success');
+                currentStep = 3;
+                updateStepUI();
+                confirmDeleteInput.value = '';
+                finalDeleteBtn.disabled = true;
+                clearMessage(step3MessageDiv);
+            } else {
+                showMessage(step2MessageDiv, data.message || data.error || 'Invalid OTP', 'error');
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage(step2MessageDiv, 'Network error while verifying OTP', 'error');
+        } finally {
+            verifyOtpBtn.disabled = false;
+            verifyOtpBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify OTP';
+        }
+    }
+
+    // Resend OTP - NO Authorization header needed
+    async function resendOtp() {
+        if (!verifiedMobile) {
+            currentStep = 1;
+            updateStepUI();
+            showMessage(step1MessageDiv, 'Please enter your mobile number again', 'info');
+            return;
+        }
+        try {
+            const response = await fetch(SEND_OTP_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ countryCode: "+91", mobileNumber: verifiedMobile })
+            });
+            const data = await response.json();
+            if (response.ok && data.success) {
+                otpId = data.data.userId;
+                showMessage(step2MessageDiv, 'OTP resent successfully!', 'success');
+            } else {
+                showMessage(step2MessageDiv, data.message || 'Failed to resend OTP', 'error');
+            }
+        } catch (e) {
+            console.error(e);
+            showMessage(step2MessageDiv, 'Resend error, please try again', 'error');
+        }
+    }
+
+    // Step 3: Delete Account (uses authToken from verification)
+    async function deleteUserAccount() {
+        if (confirmDeleteInput.value.trim() !== 'DELETE') {
+            showMessage(step3MessageDiv, 'Type DELETE to confirm account deletion', 'error');
+            return;
+        }
+        if (!authToken) {
+            showMessage(step3MessageDiv, 'Authentication missing. Please restart process.', 'error');
+            return;
+        }
+
+        finalDeleteBtn.disabled = true;
+        finalDeleteBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Deleting...';
+        clearMessage(step3MessageDiv);
+
+        try {
+            const response = await fetch(DELETE_USER_API, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify({})
+            });
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                showMessage(step3MessageDiv, '✅ Account permanently deleted from Togethr.', 'success');
+                finalDeleteBtn.innerHTML = '<i class="fas fa-check"></i> Account Deleted';
+                finalDeleteBtn.disabled = true;
+                setTimeout(() => {
+                    if (confirm('Your account has been deleted. Click OK to close this page.')) {
+                        window.close();
+                    }
+                }, 1500);
+            } else {
+                showMessage(step3MessageDiv, data.message || data.error || 'Deletion failed. Contact support.', 'error');
+                finalDeleteBtn.disabled = false;
+                finalDeleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Permanently Delete';
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage(step3MessageDiv, 'Network error. Could not delete account.', 'error');
+            finalDeleteBtn.disabled = false;
+            finalDeleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Permanently Delete';
+        }
+    }
+
+    function handleConfirmTyping() {
+        finalDeleteBtn.disabled = confirmDeleteInput.value.trim() !== 'DELETE';
+    }
+
+    function goToStep1FromStep2() {
+        currentStep = 1;
+        updateStepUI();
+        clearMessage(step2MessageDiv);
+        clearMessage(step1MessageDiv);
+        otpId = null;
+        verifiedMobile = null;
+        mobileInput.value = '';
+        otpInput.value = '';
+    }
+
+    function goToStep2FromStep3() {
+        currentStep = 2;
+        updateStepUI();
+        clearMessage(step3MessageDiv);
+        confirmDeleteInput.value = '';
+        finalDeleteBtn.disabled = true;
+    }
+
+    // Event listeners
+    sendOtpBtn.addEventListener('click', sendOtp);
+    verifyOtpBtn.addEventListener('click', verifyOtp);
+    backToStep1Btn.addEventListener('click', goToStep1FromStep2);
+    resendOtpBtn.addEventListener('click', resendOtp);
+    backToStep2Btn.addEventListener('click', goToStep2FromStep3);
+    confirmDeleteInput.addEventListener('input', handleConfirmTyping);
+    finalDeleteBtn.addEventListener('click', deleteUserAccount);
+
+    updateStepUI();
+</script>
+</body>
+</html>

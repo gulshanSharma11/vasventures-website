@@ -1,0 +1,7 @@
+# cPanel → Git Version Control runs this on "Deploy HEAD Commit".
+# Copies the site into public_html/vasventures.in only.
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/callastro1/public_html/vasventures.in/
+    - /bin/rsync -rlt --chmod=D755,F644 --exclude='.git' --exclude='.github' --exclude='.cpanel.yml' --exclude='.gitignore' --exclude='.env*' --exclude='*.zip' --exclude='.well-known' --exclude='.DS_Store' --exclude='README.md' ./ $DEPLOYPATH

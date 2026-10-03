@@ -1,0 +1,12 @@
+# secrets – NEVER commit
+.env
+*.env
+!.env.example
+
+# junk / local only
+.DS_Store
+__MACOSX/
+*.zip
+
+# server-managed (SSL certificates) – don't overwrite from git
+.well-known/

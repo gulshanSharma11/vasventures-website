@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAS VENTURES Ltd</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    background: #f5f7fa;
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+    backdrop-filter: blur(10px); /* blur the background */
+    -webkit-backdrop-filter: blur(10px); /* for Safari support */
+    color:  #1a2a6c;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: padding 0.3s, background 0.3s;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 12px 12px; /* optional: soft bottom corners */
+}
+
+/* Makes the logo completely white */
+.logo img, .footer-logo img {
+    filter: brightness(0) invert(1);
+}
+
+.header.shrink {
+    padding: 10px 40px;
+    background: #1a2a6c; /* Turns dark blue when you scroll down */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Adds a slightly darker shadow for separation */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    /* Optional: makes the logo pop against a dark background */
+    border-radius: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+.logo img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+
+.nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 30px;
+}
+
+.nav ul li a {
+    color: #ffffff; /* Bright white to pop against the dark background */
+    text-decoration: none; /* Fixed from 'bold' */
+    font-size: 18px; 
+    font-weight: 600; /* Semi-bold for readability */
+    text-transform: uppercase; /* Makes it look more like a modern app nav */
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Adds contrast against the busy image */
+    position: relative; /* Needed for the hover animation */
+}
+
+.nav ul li a:hover {
+    color: #ffd700; /* Keeps your gold theme */
+}
+
+
+.nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffd700;
+    transition: width 0.3s ease;
+}
+
+.nav ul li a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 0;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px 30px;
+    border-radius: 12px;
+    z-index: 1;
+}
+
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ede8ed;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/* About Section */
+.about {
+    padding: 80px 40px;
+    text-align: center;
+    background: white;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #1a2a6c;
+    font-weight: 700;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.about-text h3 {
+    font-size: 20px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.attribution {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Services Section */
+.services {
+    padding: 80px 40px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.services h2 {
+    font-size: 42px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.divider {
+    width: 100px;
+    height: 3px;
+    background: #ffd700;
+    margin: 0 auto 20px;
+}
+
+.services-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.service-card i {
+    font-size: 32px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px; /* Add margin to space out the button */
+}
+
+/* Button Styling */
+.service-btn {
+    background-color: #1a2a6c; /* Dark blue to match the image */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded corners */
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.service-btn:hover {
+    background-color: #ffd700; /* Yellow hover effect to match the divider color */
+    color: #1a2a6c; /* Dark blue text on hover */
+}
+
+/* Numerology Section */
+.numerology {
+    padding: 80px 40px;
+    text-align: center;
+    background: white;
+}
+
+.numerology h2 {
+    font-size: 36px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.numerology-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.numerology-image {
+    flex: 1;
+}
+
+.numerology-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.numerology-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.numerology-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.numerology-text ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.numerology-text ul li {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.numerology-text ul li .checkmark {
+    color: #ffd700;
+    margin-right: 10px;
+}
+
+.numerology-text ul li strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.numerology-text .quote {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Vastu Section */
+.vastu {
+    padding: 80px 40px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.vastu h2 {
+    font-size: 36px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.vastu-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vastu-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.vastu-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.vastu-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.vastu-text h3 {
+    font-size: 20px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.vastu-text ul {
+    list-style: none;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.vastu-text ul li {
+    margin-bottom: 15px;
+}
+
+.vastu-text ul li .checkmark {
+    color: #ffd700;
+    margin-right: 10px;
+}
+
+.vastu-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.vastu-image {
+    flex: 1;
+}
+
+.vastu-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.vastu-subservices {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+}
+
+.subservice-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.subservice-icon {
+    background: #ffd700;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+}
+
+.subservice-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.subservice-card h3 {
+    font-size: 20px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subservice-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Testimonial Section */
+/* [Previous CSS remains the same until the Testimonial section] */
+
+/* Testimonial Section */
+.testimonials {
+    padding: 80px 40px;
+    text-align: center;
+    background: white;
+}
+
+.testimonials h2 {
+    font-size: 36px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.testimonials-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.testimonial-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.testimonial-icon {
+    background: #ffd700;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: white;
+    margin: 0 auto 10px;
+}
+
+.testimonial-card h3 {
+    font-size: 18px;
+    color: #1a2a6c;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.testimonial-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.quote {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.service {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+.featured-story {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.featured-image {
+    flex: 1;
+}
+
+.featured-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.featured-text {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-text .stars {
+    margin-bottom: 10px;
+}
+
+.featured-text h3 {
+    font-size: 20px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.featured-text h4 {
+    font-size: 18px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.featured-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.client {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Footer Section */
+.footer {
+    background: #1a2a6c; /* Purple background to match the image */
+    color: white;
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo img {
+    width: 50px; /* Adjust based on your logo size */
+    margin-bottom: 20px;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffd700; /* Yellow hover effect to match the theme */
+}
+
+.footer-column p i {
+    color: #ffd700; /* Yellow icons to match the theme */
+    margin-right: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffd700; /* Yellow hover effect */
+}
+
+.app-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.app-links img {
+    width: 120px; /* Adjust based on your app store button images */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: white;
+    margin: 0;
+}
+
+/* Remove Contact Section CSS since it's now a footer */
+
+/* [Rest of the CSS remains the same] */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #1a2a6c;
+        width: 200px;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav ul.active {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .about-content,
+    .numerology-content,
+    .vastu-content,
+    .contact-content {
+        flex-direction: column;
+    }
+
+    .services-grid,
+    .vastu-subservices,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons,
+    .vastu-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .services-grid,
+    .vastu-subservices,
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* [Previous CSS remains the same until the new section] */
+
+/* Personal Astrology Consultation Section */
+.consultation {
+    padding: 80px 40px;
+    text-align: center;
+    background: white;
+}
+
+.consultation h2 {
+    font-size: 36px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.consultation-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.consultation-image {
+    flex: 1;
+}
+
+.consultation-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.consultation-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.consultation-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.consultation-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.option-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.option-icon {
+    background: #ffd700;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option-icon i {
+    color: white;
+    font-size: 20px;
+}
+
+.option-card h3 {
+    font-size: 18px;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.option-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 16px;
+    color: #1a2a6c;
+    font-weight: 700;
+}
+
+.consultation-text .quote {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* [Rest of the CSS remains the same] */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo"><img src="./images/VasVenturesLogo.png" alt="VAS VENTURES Pvt Ltd Logo" /></div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="./images/hero-bg1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="hero-content">
+            <h1>Empowering Your Future</h1>
+        </div>
+    </section>
+    
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Vas Ventures</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>At Vas Ventures, we’re dedicated to empowering individuals through innovative astrology and wellness solutions. Our mission is to blend ancient wisdom with modern technology.</p>
+                <h3>Our Vision</h3>
+                <p>We envision a world where everyone has access to personalized guidance for their life journey. Through our services, we aim to create meaningful, positive, and transformative experiences.</p>
+                <a href="#services" class="btn">Discover Our Services</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1484981138541-3d074aa97716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8aW5mb3JtYXRpb24lMjBwcm9mZXNzaW9uYWwlMjBhdXRoZW50aWN8ZW58MHwwfHx8MTc0MzE1OTQ2OHww&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="About Image">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+<section id="services" class="services">
+    <h2>Our Products</h2>
+    <div class="divider"></div>
+    <p class="services-subtitle">Our flagship platform offering comprehensive astrology services and personalized guidance. Connect with expert astrologers to navigate life’s journey with confidence and clarity.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-calculator"></i>
+            <h3>Numerology Report</h3>
+            <p>Discover how numbers influence your life path and personality traits through detailed analysis.</p>
+            <a href="https://www.call-astro.com/numerology-report" target="_blank">
+                <button class="service-btn">Get Report</button>
+            </a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-home"></i>
+            <h3>Vastu App</h3>
+            <p>Balance energy in your living spaces with our intuitive app offering personalized recommendations.</p>
+            <a href="https://www.call-astro.com/vastu-page" target="_blank">
+                <button class="service-btn">DOWNLOAD APP</button>
+            </a>
+        </div>
+        
+        <div class="service-card">
+            <i class="fas fa-comment"></i>
+            <h3>Chat</h3>
+            <p>Instant messaging with certified astrologers for quick guidance on pressing life questions.</p>
+            <a href="https://www.call-astro.com/chat-with-astrologer" target="_blank">
+                <button class="service-btn">START CHAT</button>
+            </a>
+            
+        </div>
+        <div class="service-card">
+            <i class="fas fa-phone"></i>
+            <h3>Call</h3>
+            <p>Direct phone consultations with experienced astrologers for in-depth personal guidance.</p>
+            <a href="https://www.call-astro.com/talk-with-astrologer" target="_blank">
+                <button class="service-btn">START CALL</button>
+            </a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-video"></i>
+            <h3>Live Astrologers</h3>
+            <p>Interactive live sessions with renowned astrologers offering real-time predictions and advice.</p>
+            <a href="https://www.call-astro.com/live-astrologers" target="_blank">
+                <button class="service-btn">VIDEO CONSULT</button>
+            </a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-star"></i>
+            <h3>Free Kundli</h3>
+            <p>Generate your detailed birth chart with planetary positions and personalized insights.</p>
+            <a href="https://www.call-astro.com/free-kundli" target="_blank">
+                <button class="service-btn">CREATE KUNDLI</button>
+            </a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-heart"></i>
+            <h3>Matchmaking</h3>
+            <p>Find your perfect match with astrological compatibility insights.</p>
+            <a href="https://www.call-astro.com/kundli-matching" target="_blank">
+                <button class="service-btn">MATCH HOROSCOPES</button>
+            </a>
+        
+        </div>
+       <div class="service-card" id="togethrAppCard">
+    <i class="fas fa-users"></i>
+    <h3>Togethr App</h3>
+    <p>Connect, share & grow together. Join the community with seamless OTP verification.</p>
+    <a href="/togethr-account" target="_blank" style="text-decoration: none;">
+        <button class="service-btn">LAUNCH TOGETHR</button>
+    </a>
+</div>
+    </div>
+</section>
+
+    <!-- Numerology Section -->
+    <section id="numerology" class="numerology">
+        <h2>The Power of Numerology</h2>
+        <div class="divider"></div>
+        <div class="numerology-content">
+            <div class="numerology-image">
+                <img src="https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8bnVtZXJvbG9neSUyMHByb2Zlc3Npb25hbHxlbnwwfDB8fHwxNzQzNjgxMDM5fDA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Numerology Image">
+               
+            </div>
+            <div class="numerology-text">
+                <p>Numerology is the mystical study of numbers and their influence on human life. Each number has its unique vibration and energy that can reveal profound insights about your personality, talents, and life path.</p>
+                <ul>
+                    <li><span class="checkmark">✔</span> <strong>Life Path Number</strong><br>Discover your core purpose and the journey you’re meant to take in this lifetime.</li>
+                    <li><span class="checkmark">✔</span> <strong>Expression Number</strong><br>Uncover your natural abilities and how you express yourself to the world.</li>
+                    <li><span class="checkmark">✔</span> <strong>Soul Urge Number</strong><br>Reveal your inner desires, motivations, and what truly fulfills your soul.</li>
+                </ul>
+                <p class="quote">"Understanding your numerology chart can unlock doors to self-discovery and help align your actions with your true purpose."</p>
+                <a href="https://www.call-astro.com/numerology-report" class="btn">Get Your Numerology Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vastu Section -->
+    <section id="vastu" class="vastu">
+        <h2>Vastu Shastra Harmony</h2>
+        <div class="divider"></div>
+        <p class="vastu-subtitle">Balance the five elements in your living and working spaces to create positive energy flow and prosperity.</p>
+        <div class="vastu-content">
+            <div class="vastu-text">
+                <p>Vastu Shastra is the ancient Indian science of architecture and design that aligns living spaces with natural forces. When your home or office follows Vastu principles, it becomes a conduit for positive energy.</p>
+                <h3>Our Vastu Services Include:</h3>
+                <ul>
+                    <li><span class="checkmark">✔</span> Comprehensive property analysis and assessment</li>
+                    <li><span class="checkmark">✔</span> Room-by-room Vastu consultation and recommendations</li>
+                    <li><span class="checkmark">✔</span> Vastu-compliant layout and design planning</li>
+                    <li><span class="checkmark">✔</span> Energy balancing and space clearing</li>
+                </ul>
+                <div class="vastu-buttons">
+                    <a href="https://www.call-astro.com/vastu-page" class="btn">Book Vastu Consultation</a>
+                    <a href="https://www.call-astro.com/vastu-page" class="btn">Download Vastu App</a>
+                </div>
+            </div>
+            <div class="vastu-image">
+                <img src="https://www.sharifsells.com/wp-content/uploads/2021/04/vastru-1.jpg" alt="Vastu Image">
+                
+            </div>
+        </div>
+        <div class="vastu-subservices">
+            <div class="subservice-card">
+                <div class="subservice-icon"><i class="fas fa-home"></i></div>
+                <h3>Home Vastu</h3>
+                <p>Create a harmonious living space that nurtures family relationships and personal growth.</p>
+            </div>
+            <div class="subservice-card">
+                <div class="subservice-icon"><i class="fas fa-building"></i></div>
+                <h3>Office Vastu</h3>
+                <p>Optimize your workspace for productivity, success, and positive dynamics.</p>
+            </div>
+            <div class="subservice-card">
+                <div class="subservice-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Commercial Vastu</h3>
+                <p>Enhance business prosperity and customer flow with strategic Vastu principles.</p>
+            </div>
+            <div class="subservice-card">
+                <div class="subservice-icon"><i class="fas fa-tools"></i></div>
+                <h3>Vastu Correction</h3>
+                <p>Remedies and solutions for existing properties without major structural changes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Astrology Consultation Section -->
+    <section id="consultation" class="consultation">
+        <h2>Personal Astrology Consultation</h2>
+        <div class="divider"></div>
+        <div class="consultation-content">
+            <div class="consultation-image">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8Y29uc3VsdGF0aW9uJTIwcHJvZmVzc2lvbmFsfGVufDB8MHx8fDE3NDM0OTAzOTh8MA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Consultation Image">
+               
+            </div>
+            <div class="consultation-text">
+                <p>Get personalized guidance from our expert astrologers who combine ancient wisdom with modern insight. Our consultations provide clarity and direction for life’s most important questions.</p>
+                <div class="consultation-options">
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-clock"></i></div>
+                        <h3>30-Minute Session</h3>
+                        <p>Quick guidance for specific questions about career, relationships, or finances.</p>
+                        <p class="price">$49</p>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-clock"></i></div>
+                        <h3>60-Minute Session</h3>
+                        <p>Comprehensive reading covering multiple life areas with detailed insights.</p>
+                        <p class="price">$89</p>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-calendar"></i></div>
+                        <h3>Yearly Forecast</h3>
+                        <p>Detailed prediction for the coming year with monthly breakdowns and transits.</p>
+                        <p class="price">$129</p>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Relationship Analysis</h3>
+                        <p>Compatibility assessment for couples with guidance for harmony and growth.</p>
+                        <p class="price">$99</p>
+                    </div>
+                </div>
+                <p class="quote">"The consultation was eye-opening. I received practical guidance that helped me make important life decisions with confidence." — Sarah K.</p>
+                <a href="https://www.call-astro.com/chat-with-astrologer" class="btn">Book Your Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="divider"></div>
+        <p class="testimonials-subtitle">Discover how our astrology and spiritual guidance services have transformed lives and provided clarity to our clients.</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-icon">JP</div>
+                <h3>James Peterson</h3>
+                <p>Business Owner</p>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The numerology report was incredibly accurate. It revealed patterns in my business cycles that helped me make better timing decisions for major investments."</p>
+                <p class="service">Service: Numerology Report</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-icon">SM</div>
+                <h3>Sarah Mitchell</h3>
+                <p>Interior Designer</p>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"After implementing the Vastu suggestions for my home office, I noticed a remarkable improvement in creativity and productivity. My clients love the energy in the space too!"</p>
+                <p class="service">Service: Vastu Consultation</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-icon">RK</div>
+                <h3>Rachel Kumar</h3>
+                <p>Healthcare Professional</p>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The relationship compatibility analysis was eye-opening. It helped my partner and I understand our communication patterns and strengthen our bond."</p>
+                <p class="service">Service: Relationship Analysis</p>
+            </div>
+        </div>
+        <div class="featured-story">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1423248515266-98acb914c861?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8d2FubmVlciUyMHpvZWslMjBiZW50JTIwbmFhciUyMGVlbiUyMGJla3dhbWUlMjB2YWttYW4lMjB2b29yJTIwaGV0JTIwdWl0dm9lcmVuJTIwdmFuJTIwa2xpbmtlcndlcmtlbiUyMHJpb2xlcmluZ3N3ZXJrZW4lMkMlMjBiZW50JTIwYmlqJTIwYWxyJTIwaW5mcmFzdHJ1Y3R1dXJ3ZXJrZW4lMjBoZXQlMjBqdWlzdGUlMjBhZHJlcy4lMjB0ZXN0aW1vbmlhbHMlMjBmZWVkYmFjayUyMGF1dGhlbnRpYyUyMHRydXN0d29ydGh5fGVufDB8MXx8fDE3NDM2NzY5MTN8MA&ixlib=rb-4.0.3&q=80&w=1080?q=80" alt="Featured Story Image">
+                
+            </div>
+            <div class="featured-text">
+                <div class="stars">★★★★★</div>
+                <h3>Featured Client Story</h3>
+                <h4>Michael & Emma’s Journey</h4>
+                <p>"After years of business setbacks, we consulted with the astrology team for guidance. The yearly forecast helped us time our new venture launch perfectly, and the Vastu consultation transformed our office space. Six months later, our business is thriving beyond expectations."</p>
+                <p class="client">Michael & Emma Thornton, Small Business Owners, California</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+   <!-- Footer Section -->
+<footer id="footer" class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <div class="footer-logo">
+                <img src="./images/VasVenturesLogo.png" alt="VAS VENTURES Pvt Ltd Logo" /> 
+            </div>
+            <p>VAS VENTURES Pvt Ltd is the proud parent company of Call-Astro, India's premier platform for online astrology predictions. Through Call-Astro, you can connect with the best astrologers from India to get answers to all your worries. Navigate your future with accurate Kundli predictions and get the best guidance for marriage, love life, career, or health via call, chat, queries, or detailed reports.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Terms of service</a></li>
+                <li><a href="#">Privacy policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Our Services</h3>
+            <ul>
+                <li><a href="#">Free Kundli</a></li>
+                <li><a href="#">Kundli Matching</a></li>
+                <li><a href="#">Chat with Astrologer</a></li>
+                <li><a href="#">Talk to Astrologer</a></li>
+                <li><a href="#">Today Panchang</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 417, Manhattan Street, Mahagun Moderne, Sector 78, Noida, Uttar Pradesh, India 201304</p>
+            <p><i class="fas fa-phone"></i> Phone: +91-9650459807</p>
+            <p><i class="fas fa-envelope"></i> Email: info@vasventures.in</p>
+            <!--<div class="app-links">-->
+            <!--    <a href="#"><img src="google-play.png" alt="Google Play" /></a>-->
+            <!--    <a href="#"><img src="app-store.png" alt="App Store" /></a>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 VAS VENTURES ALL RIGHTS RESERVED | DESIGNED BY VAS VENTURES</p>
+    </div>
+</footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('.nav ul');
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        // Sticky Header Shrink
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        });
+    </script>
+    
+</body>
+</html>
