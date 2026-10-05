@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en-IN" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VAS Ventures | Call-Astro, EyezonKid &amp; Togethr</title>
 <meta name="description" content="VAS Ventures Pvt. Ltd. builds Call-Astro (online astrology, Vastu software, Kundli &amp; numerology), EyezonKid (parental control) and Togethr — ancient wisdom, powered by modern technology.">
-<meta name="theme-color" content="#07061a">
+<meta name="theme-color" content="#fbf8f2">
+<script>try{var t=localStorage.getItem("vas-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="canonical" href="https://vasventures.in/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="VAS Ventures | Ancient wisdom, modern technology">
@@ -360,6 +361,87 @@ section{position:relative}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+/* ===================== LIGHT THEME (default) ===================== */
+html[data-theme="light"]{
+  --bg:#fbf8f2; --bg-2:#ffffff; --ink:#1d1a33; --muted:#575270; --dim:#7a7591;
+  --gold:#b7700f; --line:rgba(29,26,51,.1); --line-2:rgba(29,26,51,.16);
+  --glass:rgba(255,255,255,.6); --glass-2:rgba(255,255,255,.75);
+  --grad-gold:linear-gradient(135deg,#ffd27a 0%,#f5a524 45%,#ef7d1a 100%);
+  color-scheme:light;
+}
+html[data-theme="light"] body{background:var(--bg)}
+html[data-theme="light"] .cosmos{background:
+  radial-gradient(1100px 650px at 88% -8%,rgba(139,92,246,.12),transparent 60%),
+  radial-gradient(900px 600px at -10% 28%,rgba(74,140,255,.10),transparent 60%),
+  radial-gradient(900px 700px at 50% 115%,rgba(255,157,66,.12),transparent 60%),var(--bg)}
+html[data-theme="light"] #stars{opacity:.45}
+html[data-theme="light"] .text-gold{background:linear-gradient(135deg,#d98a0b 0%,#e8650f 60%,#c2410c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme="light"] .glass{background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,255,255,.62));border-color:rgba(29,26,51,.08);box-shadow:0 18px 44px -24px rgba(60,40,120,.28),inset 0 1px 0 #fff}
+/* navbar + menus */
+html[data-theme="light"] .nav__bar{background:rgba(255,255,255,.66);box-shadow:0 10px 34px -16px rgba(60,40,120,.3),inset 0 1px 0 #fff}
+html[data-theme="light"] .nav.is-scrolled .nav__bar{background:rgba(255,255,255,.9)}
+html[data-theme="light"] .nav__link{color:#2e2a4a}
+html[data-theme="light"] .nav__link:hover,html[data-theme="light"] .nav__item:focus-within>.nav__link{background:rgba(29,26,51,.06);color:#1d1a33}
+html[data-theme="light"] .nav__link.is-active{color:#c2620c}
+html[data-theme="light"] .drop{background:rgba(255,255,255,.95);box-shadow:0 30px 60px -24px rgba(60,40,120,.35)}
+html[data-theme="light"] .drop a{color:#3a3556}
+html[data-theme="light"] .drop a:hover{background:rgba(245,165,36,.1);color:#1d1a33}
+html[data-theme="light"] .drop .ico{background:rgba(245,165,36,.12);border-color:rgba(245,165,36,.3);color:#c2620c}
+html[data-theme="light"] .nav__burger{background:#fff}
+html[data-theme="light"] .nav__burger span,html[data-theme="light"] .nav__burger span::before,html[data-theme="light"] .nav__burger span::after{background:#1d1a33}
+html[data-theme="light"] .nav.is-open .nav__burger span{background:transparent}
+html[data-theme="light"] .mnav{background:rgba(251,248,242,.97)}
+html[data-theme="light"] .btn-glass{background:rgba(255,255,255,.8);border-color:rgba(29,26,51,.14);color:#1d1a33}
+html[data-theme="light"] .btn-glass:hover{background:#fff}
+html[data-theme="light"] .c-btn{background:#fff;border-color:rgba(29,26,51,.12)}
+html[data-theme="light"] .dots button{background:rgba(29,26,51,.18)}
+html[data-theme="light"] .progress{background:rgba(29,26,51,.1)}
+/* logo swap */
+.logo-dark{display:none}
+html[data-theme="light"] .logo-dark{display:block}
+html[data-theme="light"] .logo-light{display:none}
+/* hero: video stays on the right, cream wash behind the text */
+html[data-theme="light"] .hero__media::after{background:
+  linear-gradient(90deg,rgba(251,248,242,1) 0%,rgba(251,248,242,.94) 36%,rgba(251,248,242,.35) 66%,rgba(251,248,242,.15) 100%),
+  linear-gradient(180deg,rgba(251,248,242,0) 55%,var(--bg) 100%)}
+html[data-theme="light"] .eyebrow{color:#a55a08;background:rgba(245,165,36,.12);border-color:rgba(245,165,36,.35)}
+html[data-theme="light"] .chip{color:#1d1a33}
+html[data-theme="light"] .chip i{background:rgba(245,165,36,.14);color:#c2620c}
+html[data-theme="light"] .planet b{background:rgba(255,255,255,.85);color:#1d1a33}
+html[data-theme="light"] .planet b i{color:#c2620c}
+html[data-theme="light"] .scroll-hint{border-color:rgba(29,26,51,.25)}
+/* marquee, sections */
+html[data-theme="light"] .marquee{background:rgba(255,255,255,.6)}
+html[data-theme="light"] .marquee__track span{color:#3a3556}
+html[data-theme="light"] .marquee__track span i,html[data-theme="light"] .sec__eyebrow,html[data-theme="light"] .card__go,html[data-theme="light"] .foot h4{color:#c2620c}
+html[data-theme="light"] .venture__tag{background:rgba(29,26,51,.05)}
+html[data-theme="light"] .venture li{color:#2e2a4a}
+html[data-theme="light"] .venture::before{opacity:.32}
+html[data-theme="light"] .badge-float{color:#1d1a33}
+html[data-theme="light"] .card:hover{border-color:rgba(245,165,36,.45)}
+html[data-theme="light"] .card::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(245,165,36,.14),transparent 45%)}
+html[data-theme="light"] .tool-num{color:rgba(29,26,51,.07)}
+html[data-theme="light"] .quote{color:#2e2a4a}
+html[data-theme="light"] .step__n{color:#c2620c;background:rgba(245,165,36,.1);border-color:rgba(245,165,36,.35)}
+html[data-theme="light"] .spot__visual::after{background:linear-gradient(180deg,transparent 45%,rgba(29,26,51,.55))}
+html[data-theme="light"] .win{color:#fff;background:linear-gradient(160deg,rgba(20,16,48,.78),rgba(20,16,48,.6));border-color:rgba(255,255,255,.18)}
+@media (max-width:960px){
+  html[data-theme="light"] .hero__media::after{background:linear-gradient(180deg,rgba(251,248,242,.97) 0%,rgba(251,248,242,.9) 55%,rgba(251,248,242,.55) 75%,var(--bg) 100%)}
+}
+html[data-theme="light"] .cta::before{opacity:.22}
+/* footer */
+html[data-theme="light"] .foot{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.3))}
+html[data-theme="light"] .foot ul a:hover{color:#1d1a33}
+html[data-theme="light"] .foot__contact i{color:#c2620c}
+/* theme toggle button */
+.theme-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:16px;background:var(--glass-2);border:1px solid var(--line);color:var(--ink);transition:transform .4s var(--ease),background-color .25s}
+.theme-btn:hover{transform:rotate(-20deg)}
+.theme-btn .fa-sun{display:none}
+html[data-theme="light"] .theme-btn .fa-sun{display:inline-block}
+html[data-theme="light"] .theme-btn .fa-moon{display:none}
+html[data-theme="light"] .theme-btn{background:#fff;color:#c2620c}
+/* smooth switch */
+html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease!important}
 </style>
 </head>
 <body>
@@ -369,7 +451,7 @@ section{position:relative}
 <!-- ===================== NAVBAR ===================== -->
 <header class="nav" id="nav">
   <div class="nav__bar">
-    <a class="nav__logo" href="/" aria-label="VAS Ventures home"><img src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures"></a>
+    <a class="nav__logo" href="/" aria-label="VAS Ventures home"><img class="logo-light" src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures"><img class="logo-dark" src="images/VasVenturesLogo.png" width="786" height="332" alt="VAS Ventures"></a>
 
     <nav aria-label="Primary">
       <ul class="nav__menu">
@@ -421,6 +503,7 @@ section{position:relative}
     </nav>
 
     <div class="nav__cta">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark theme"><i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i></button>
       <a class="btn btn-gold btn-sm" href="https://www.call-astro.com/chat-with-astrologer" aria-label="Chat with Astrologer"><i class="fa-regular fa-comment-dots"></i><span>Chat with Astrologer</span></a>
       <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
     </div>
@@ -775,7 +858,7 @@ section{position:relative}
   <div class="wrap">
     <div class="foot__grid">
       <div>
-        <a class="foot__logo" href="/"><img src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures" loading="lazy"></a>
+        <a class="foot__logo" href="/"><img class="logo-light" src="images/vas-logo-light.png" width="393" height="166" alt="VAS Ventures" loading="lazy"><img class="logo-dark" src="images/VasVenturesLogo.png" width="786" height="332" alt="VAS Ventures" loading="lazy"></a>
         <p>VAS Ventures Pvt. Ltd. is the parent company of Call-Astro, India's platform for online astrology predictions, and of EyezonKid and Togethr. Connect with astrologers for guidance on marriage, love, career and health — by chat, queries or detailed reports.</p>
       </div>
       <div>
@@ -817,6 +900,21 @@ section{position:relative}
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- light / dark theme toggle (light is default, choice remembered) ---------- */
+  var root = document.documentElement, tbtn = document.getElementById('themeBtn'), meta = document.querySelector('meta[name=theme-color]');
+  function syncTheme() {
+    var light = root.getAttribute('data-theme') !== 'dark';
+    tbtn.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+    meta.setAttribute('content', light ? '#fbf8f2' : '#07061a');
+  }
+  syncTheme();
+  tbtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.classList.add('theme-anim'); root.setAttribute('data-theme', next); syncTheme();
+    try { localStorage.setItem('vas-theme', next); } catch (e) {}
+    setTimeout(function () { root.classList.remove('theme-anim'); }, 500);
+  });
 
   /* ---------- navbar: scrolled state + mobile menu ---------- */
   var nav = document.getElementById('nav'), burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
@@ -914,7 +1012,7 @@ section{position:relative}
       for (var i = 0; i < stars.length; i++) {
         var st = stars[i]; st.p += st.s;
         ctx.globalAlpha = .35 + Math.sin(st.p) * .35;
-        ctx.fillStyle = i % 9 ? '#ffffff' : '#f7c46c';
+        ctx.fillStyle = root.getAttribute('data-theme') === 'light' ? (i % 9 ? '#8b7fd0' : '#e8a13a') : (i % 9 ? '#ffffff' : '#f7c46c');
         ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);
