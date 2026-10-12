@@ -62,10 +62,10 @@ APPS = [
     ('ca-tarot', 'astro', 'CA Tarot', 'com.callastro.tarot_app', 'Lifestyle', 'For users',
      'Pick and reveal tarot cards, get a Card of the Day, and read upright and reversed meanings in Hindi and English.',
      'r-f0fzXDCpLsib7zoCclP6rZX3VCwQemgYKedgZeR1k6ekWq7bPVBRm4L-KK53xDJ18kazCudSTBbMhIZBFk5w'),
-    ('eyezonkid', 'family', 'EyezonKid: Parental Control', 'com.vasventures.eyezonkid', 'Parenting', 'For parents',
+    ('eyezonkid', 'ezk', 'EyezonKid: Parental Control', 'com.vasventures.eyezonkid', 'Parenting', 'For parents',
      'Daily screen-time limits, app blocking, bedtime and study schedules, activity reports and uninstall protection.',
      'aSsv9VL7Y7aciSW9koMQ2r2oWdZklbnJrJ7RY1e_U5QFRIqjCvtv04M0FXqmbP5gqESDTPOyBoeoQlo3FtdQXg'),
-    ('togethr', 'family', 'Togethr', 'com.vas_ventures.togethr', 'Social', 'For connections',
+    ('togethr', 'tog', 'Togethr', 'com.vas_ventures.togethr', 'Social', 'For connections',
      'Find friends and matches through astrology, numerology and soul bond compatibility, with daily cosmic guidance.',
      'Zl-dDUiIWXmggsVHZhqUCkVC0hEdOiL2aLua4mU5H8g7HaSXefNIaTaEpFFYCiC90JlF2yRfgph23wGDrX-nH0Y'),
 ]
@@ -95,7 +95,15 @@ def apps_grid(group):
             continue
         out.append(f'<article class="app rv">{app_icon(slug)}<div class="app__body"><div class="app__tags"><span>{cat}</span><span>{aud}</span></div>'
                    f'<h3>{name}</h3><p>{desc}</p><a class="link" href="{PLAY}{pkg}" target="_blank" rel="noopener">[[google-play]]View on Google Play [[up-right]]</a></div></article>')
-    return f'<div class="apps">{"".join(out)}</div>'
+    one = ' apps--one' if len(out) == 1 else ''
+    return f'<div class="apps{one}">{"".join(out)}</div>'
+
+
+def mini_apps(group):
+    items = ''.join(f'<a class="mini" href="{PLAY}{a[3]}" target="_blank" rel="noopener" title="{a[2]}">{app_icon(a[0], "appicon appicon--xs")}<span>{a[2].split(":")[0]}</span></a>'
+                    for a in APPS if a[1] == group)
+    n = sum(1 for a in APPS if a[1] == group)
+    return f'<div class="minis"><small>{n} apps on Google Play</small><div class="minis__row">{items}</div></div>'
 
 
 def apps_strip():
@@ -194,6 +202,7 @@ def main():
     for slug, nav, title, desc, name in PAGES:
         body = read(SRC, 'pages', slug + '.html')
         body = re.sub(r'\{\{apps:([a-z]+)\}\}', lambda m: apps_grid(m.group(1)), body)
+        body = re.sub(r'\{\{miniapps:([a-z]+)\}\}', lambda m: mini_apps(m.group(1)), body)
         body = re.sub(r'\{\{play:([a-z-]+)\}\}', lambda m: play_btn(m.group(1)), body)
         body = re.sub(r'\{\{icon:([a-z-]+)\}\}', lambda m: app_icon(m.group(1), 'appicon appicon--lg'), body)
         body = body.replace('{{appstrip}}', apps_strip()).replace('{{appcount}}', str(len(APPS))).replace('https://play.google.com/store/apps/dev?id=VAS+Ventures', PLAY_DEV)

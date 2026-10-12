@@ -373,6 +373,19 @@ a.ccard:hover{box-shadow:inset 0 0 0 1px rgba(91,140,255,.5)}
 .apps-strip--plain .apps-strip__icons{justify-content:center;gap:18px}
 .apps-strip--plain .appicon--sm{width:72px;height:72px;border-radius:20px}
 
+.appicon--xs{width:40px;height:40px;border-radius:11px;box-shadow:0 0 0 1px var(--line-2)}
+.minis{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.minis small{display:block;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.minis__row{display:flex;flex-wrap:wrap;gap:10px}
+.mini{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:500;color:var(--soft);transition:background .25s ease,color .25s ease,transform .25s ease}
+.mini:hover{background:rgba(47,107,255,.16);color:var(--text);transform:translateY(-2px)}
+.card .minis{margin-top:22px}
+.card .minis__row{gap:8px}
+.card .mini{padding:0;background:none;box-shadow:none}
+.card .mini span{display:none}
+.card .mini .appicon--xs{width:40px;height:40px;border-radius:11px}
+.apps--one{grid-template-columns:1fr}
+
 /* ---------- footer ---------- */
 .ftr{margin-top:120px;border-top:1px solid var(--line);background:var(--bg-2)}
 .ftr__top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;padding:80px 0 60px}
