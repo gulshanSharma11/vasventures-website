@@ -10,3 +10,6 @@ __MACOSX/
 
 # server-managed (SSL certificates) – don't overwrite from git
 .well-known/
+
+# local bundles
+*.tgz
