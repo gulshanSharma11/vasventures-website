@@ -254,6 +254,12 @@ p{margin:0}
 :root[data-theme="light"] .portrait{background:linear-gradient(160deg,#DCE6FF,#F5F7FC)}
 .portrait::before{content:"";position:absolute;width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(47,107,255,.55),transparent 65%);filter:blur(20px)}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait--photo{place-items:end center}
+.portrait--photo img{inset:auto 0 0 0;height:94%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.portrait--photo::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,transparent,rgba(4,6,11,.55));pointer-events:none}
+:root[data-theme="light"] .portrait--photo::after{background:linear-gradient(180deg,transparent,rgba(11,63,160,.18))}
+.portrait__tag{z-index:2}
+img.sign__av{object-fit:cover;object-position:center top;background:var(--grad)}
 .portrait__mono{position:relative;font-family:var(--font-head);font-weight:700;font-size:clamp(80px,10vw,140px);letter-spacing:-.05em;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 .portrait__tag{position:absolute;left:20px;right:20px;bottom:20px;padding:16px 20px;border-radius:18px;background:rgba(4,6,11,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);color:#fff}
 .portrait__tag b{display:block;font-family:var(--font-head);font-size:19px;font-weight:600}
@@ -287,7 +293,7 @@ p{margin:0}
 
 /* ---------- values / list rows ---------- */
 .rows{display:grid;border-top:1px solid var(--line)}
-.rows>div{display:grid;grid-template-columns:80px 1fr 1.3fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--line);align-items:start}
+.rows>div{display:grid;grid-template-columns:120px 1fr 1.3fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--line);align-items:start}
 .rows span{font-family:var(--font-head);color:var(--blue-2);font-size:15px}
 .rows h3{font-size:24px}
 .rows p{color:var(--muted)}

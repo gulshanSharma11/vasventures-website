@@ -23,7 +23,7 @@ PAGES = [
     ('about', 'about', 'About VAS Ventures | Our story, mission & values',
      'Learn about VAS Ventures Pvt. Ltd. — our story, mission, values and the brands we build: Call-Astro, EyezonKid and Togethr.', 'About'),
     ('alok-trivedi', 'about', 'Alok Trivedi | Founder of VAS Ventures',
-     'Alok Trivedi is the founder of VAS Ventures Pvt. Ltd., the parent company of Call-Astro, EyezonKid and Togethr.', 'Alok Trivedi'),
+     'Alok Trivedi — Founder & Director of VAS Ventures Pvt. Ltd., Jyotirvid and Vastu Visharad with 18+ years in Jyotish, Vastu Shastra and Numerology.', 'Alok Trivedi'),
     ('products', 'products', 'Our Products | Call-Astro, EyezonKid & Togethr — VAS Ventures',
      'Explore the products of VAS Ventures: Call-Astro for astrology and Vastu, EyezonKid for parental control and Togethr, an astrology-powered social app.', 'Products'),
     ('call-astro', 'products', 'Call-Astro | Online astrology & Vastu — a VAS Ventures product',
@@ -153,8 +153,15 @@ def more(slug):
 def portrait():
     for ext in ('webp', 'jpg', 'jpeg', 'png'):
         if os.path.exists(os.path.join(ROOT, 'images', f'alok-trivedi.{ext}')):
-            return f'<img src="/images/alok-trivedi.{ext}" alt="Alok Trivedi, Founder of VAS Ventures">'
+            return f'<img src="/images/alok-trivedi.{ext}" width="1000" height="1683" alt="Alok Trivedi, Founder &amp; Director of VAS Ventures">'
     return '<span class="portrait__mono" aria-hidden="true">AT</span>'
+
+
+def avatar():
+    for ext in ('webp', 'jpg', 'png'):
+        if os.path.exists(os.path.join(ROOT, 'images', f'alok-trivedi-avatar.{ext}')):
+            return f'<img class="sign__av" src="/images/alok-trivedi-avatar.{ext}" width="104" height="104" alt="" loading="lazy">'
+    return '<span class="sign__av">AT</span>'
 
 
 def schema(slug, title, desc):
@@ -168,7 +175,10 @@ def schema(slug, title, desc):
                                {'@type': 'Organization', 'name': 'Togethr', 'url': SITE + '/togethr'}]}
     graph = [org, {'@type': 'WebPage', 'url': SITE + url(slug), 'name': title, 'description': desc, 'publisher': {'@id': SITE + '/#org'}}]
     if slug == 'alok-trivedi':
-        graph.append({'@type': 'Person', '@id': SITE + '/alok-trivedi#person', 'name': 'Alok Trivedi', 'jobTitle': 'Founder',
+        graph.append({'@type': 'Person', '@id': SITE + '/alok-trivedi#person', 'name': 'Alok Trivedi', 'jobTitle': 'Founder & Director', 'image': SITE + '/images/alok-trivedi.webp',
+                      'knowsAbout': ['Vedic astrology', 'Vastu Shastra', 'Numerology'],
+                      'memberOf': {'@type': 'Organization', 'name': 'Indian Council of Astrological Sciences'},
+                      'sameAs': ['https://tripadajyotish.com/about-alok-trivedi/'],
                       'worksFor': {'@id': SITE + '/#org'}, 'url': SITE + '/alok-trivedi'})
     return '<script type="application/ld+json">' + json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False) + '</script>'
 
@@ -206,7 +216,7 @@ def main():
         body = re.sub(r'\{\{play:([a-z-]+)\}\}', lambda m: play_btn(m.group(1)), body)
         body = re.sub(r'\{\{icon:([a-z-]+)\}\}', lambda m: app_icon(m.group(1), 'appicon appicon--lg'), body)
         body = body.replace('{{appstrip}}', apps_strip()).replace('{{appcount}}', str(len(APPS))).replace('https://play.google.com/store/apps/dev?id=VAS+Ventures', PLAY_DEV)
-        body = body.replace('{{crumbs}}', crumbs(slug, name)).replace('{{more}}', more(slug)).replace('{{portrait}}', portrait())
+        body = body.replace('{{crumbs}}', crumbs(slug, name)).replace('{{more}}', more(slug)).replace('{{portrait}}', portrait()).replace('{{avatar}}', avatar())
         hdr = header.replace(f'data-nav="{nav}"', f'data-nav="{nav}" aria-current="page"')
         h = (head.replace('{{title}}', title).replace('{{description}}', desc).replace('{{path}}', url(slug))
              .replace('{{schema}}', schema(slug, title, desc)))
