@@ -25,23 +25,88 @@ PAGES = [
     ('alok-trivedi', 'about', 'Alok Trivedi | Founder of VAS Ventures',
      'Alok Trivedi is the founder of VAS Ventures Pvt. Ltd., the parent company of Call-Astro, EyezonKid and Togethr.', 'Alok Trivedi'),
     ('products', 'products', 'Our Products | Call-Astro, EyezonKid & Togethr — VAS Ventures',
-     'Explore the products of VAS Ventures: Call-Astro for astrology and Vastu, EyezonKid for parental control and Togethr for community.', 'Products'),
+     'Explore the products of VAS Ventures: Call-Astro for astrology and Vastu, EyezonKid for parental control and Togethr, an astrology-powered social app.', 'Products'),
     ('call-astro', 'products', 'Call-Astro | Online astrology & Vastu — a VAS Ventures product',
      'Call-Astro by VAS Ventures: chat with verified astrologers, free Kundli, matchmaking, horoscope, Vastu software, numerology and pooja booking.', 'Call-Astro'),
     ('eyezonkid', 'products', 'EyezonKid | Parental control — a VAS Ventures product',
      'EyezonKid by VAS Ventures: parental control for Mac, Windows, Android and iPhone with screen-time limits, app blocking and alerts — private chats stay private.', 'EyezonKid'),
-    ('togethr', 'products', 'Togethr | Community app — a VAS Ventures product',
-     'Togethr by VAS Ventures: a community app to connect, share and grow together, with secure OTP sign-in and full account control.', 'Togethr'),
+    ('togethr', 'products', 'Togethr | Astrology & numerology social app — a VAS Ventures product',
+     'Togethr by VAS Ventures: find friends and matches with astrology, numerology and soul bond compatibility. Daily cosmic guidance and community chat.', 'Togethr'),
+    ('apps', 'products', 'Our Apps on Google Play | VAS Ventures',
+     'All apps by VAS Ventures Pvt. Ltd. on Google Play: Call Astro, Call-Astro Partner, CA Vastu, CA Astrology, CA Numerology, CA Tarot, EyezonKid and Togethr.', 'Apps'),
     ('contact', 'contact', 'Contact VAS Ventures | Noida, India',
      'Contact VAS Ventures Pvt. Ltd. in Noida for business enquiries, partnerships, media and product support.', 'Contact'),
 ]
-PRODUCT_PARENT = {'call-astro', 'eyezonkid', 'togethr'}
+PRODUCT_PARENT = {'call-astro', 'eyezonkid', 'togethr', 'apps'}
 FOUNDER_PARENT = {'alok-trivedi'}
+
+PLAY = 'https://play.google.com/store/apps/details?id='
+PLAY_DEV = 'https://play.google.com/store/apps/developer?id=Vas+Venture+Pvt+Ltd'
+# slug, group, name, package, category, audience, description, play-lh icon id
+APPS = [
+    ('call-astro', 'astro', 'Call Astro: Talk to Astrologer', 'com.callastrouser', 'Lifestyle', 'For users',
+     'Chat live with verified astrologers — your first chat is free. Free Kundli, horoscope matching and daily Panchang.',
+     'vyEG9egs4Dk16WDT35pp9IgPNLx5PScThnxJdZFSyVop5xWacFQ30zcGl91Uk3LmjfvwcVOJqJgAfofQqKoQ'),
+    ('call-astro-partner', 'astro', 'Call-Astro Partner', 'com.callastro', 'Business', 'For astrologers',
+     'Join the Call-Astro panel: go live, set your call rates, track every call and see your daily earnings.',
+     'TVcRg8us6KXoyDYQ9U0nHO8UMv_0FvYJrWMh6piOTjwETD4kX_JLY7JqD-v5Wmhikj1uqea8RaBbzB3ETBvI'),
+    ('ca-vastu', 'astro', 'CA Vastu: Compass & Floor Plan', 'com.vas_ventures.vastu', 'Education', 'For homes & professionals',
+     'Vastu compass, 8 and 16-zone grids on any floor plan, Brahmasthan detection, dosha checks and PDF reports.',
+     'cRc1Jnw2ThMoZE204MD-PWA-S6Q6eLhq9Uqd8epFdN4JZUlIhwxPz1m_VCazdGRiEBQC_H36d0sqSORJdt4gQA'),
+    ('ca-astrology', 'astro', 'CA Astrology', 'com.vasVentures.astrology.ca_astrology', 'Education', 'For users',
+     'Daily horoscope, detailed Kundli insights and guidance on life, relationships and career.',
+     '0zqG-2wqg7ZYSTJpOH7URNhFHxujKlsTWjuLK5lF8kydaWcqV_NnwD-hkPvK8sm-hO92tSaGbE9TSMTWxK78'),
+    ('ca-numerology', 'astro', 'CA Numerology', 'com.callAstro.numerologyApp', 'Lifestyle', 'For users',
+     'Personal numerology reports — Moolank, Bhagyank and name-number analysis with Pythagorean and Chaldean methods.',
+     'upHPaxB1aTMZmJr8sAA8Ig7kSjZosUAMjmLtE_cV9tLdpD6w1XeN2VNJXBQt2LgNjNh7iON4Z5QhWi0o6WxVxg'),
+    ('ca-tarot', 'astro', 'CA Tarot', 'com.callastro.tarot_app', 'Lifestyle', 'For users',
+     'Pick and reveal tarot cards, get a Card of the Day, and read upright and reversed meanings in Hindi and English.',
+     'r-f0fzXDCpLsib7zoCclP6rZX3VCwQemgYKedgZeR1k6ekWq7bPVBRm4L-KK53xDJ18kazCudSTBbMhIZBFk5w'),
+    ('eyezonkid', 'family', 'EyezonKid: Parental Control', 'com.vasventures.eyezonkid', 'Parenting', 'For parents',
+     'Daily screen-time limits, app blocking, bedtime and study schedules, activity reports and uninstall protection.',
+     'aSsv9VL7Y7aciSW9koMQ2r2oWdZklbnJrJ7RY1e_U5QFRIqjCvtv04M0FXqmbP5gqESDTPOyBoeoQlo3FtdQXg'),
+    ('togethr', 'family', 'Togethr', 'com.vas_ventures.togethr', 'Social', 'For connections',
+     'Find friends and matches through astrology, numerology and soul bond compatibility, with daily cosmic guidance.',
+     'Zl-dDUiIWXmggsVHZhqUCkVC0hEdOiL2aLua4mU5H8g7HaSXefNIaTaEpFFYCiC90JlF2yRfgph23wGDrX-nH0Y'),
+]
+APP = {a[0]: a for a in APPS}
+
+
+def app_icon(slug, cls='appicon'):
+    a = APP[slug]
+    for ext in ('webp', 'png', 'jpg'):  # a saved copy in images/apps/ wins over the Play Store image
+        if os.path.exists(os.path.join(ROOT, 'images', 'apps', f'{slug}.{ext}')):
+            src = f'/images/apps/{slug}.{ext}'; break
+    else:
+        src = f'https://play-lh.googleusercontent.com/{a[7]}=w192-h192'
+    lazy = '' if 'lg' in cls else ' loading="lazy"'
+    return f'<img class="{cls}" src="{src}" width="96" height="96" alt="{a[2]} app icon"{lazy}>'
+
+
+def play_btn(slug, extra=''):
+    return (f'<a class="btn btn--play {extra}" href="{PLAY}{APP[slug][3]}" target="_blank" rel="noopener">'
+            '[[google-play]]<span><small>GET IT ON</small>Google Play</span></a>')
+
+
+def apps_grid(group):
+    out = []
+    for slug, g, name, pkg, cat, aud, desc, _ in APPS:
+        if group != 'all' and g != group:
+            continue
+        out.append(f'<article class="app rv">{app_icon(slug)}<div class="app__body"><div class="app__tags"><span>{cat}</span><span>{aud}</span></div>'
+                   f'<h3>{name}</h3><p>{desc}</p><a class="link" href="{PLAY}{pkg}" target="_blank" rel="noopener">[[google-play]]View on Google Play [[up-right]]</a></div></article>')
+    return f'<div class="apps">{"".join(out)}</div>'
+
+
+def apps_strip():
+    icons = ''.join(f'<a class="apps-strip__i" href="{PLAY}{a[3]}" target="_blank" rel="noopener" title="{a[2]}">{app_icon(a[0], "appicon appicon--sm")}</a>' for a in APPS)
+    return icons
+
 
 PRODUCTS = [
     ('call-astro', 'astro', 'om', 'Call-Astro', 'Astrology, Kundli, Vastu & spiritual services.'),
     ('eyezonkid', 'ezk', 'shield-halved', 'EyezonKid', 'Parental control for every screen.'),
-    ('togethr', 'tog', 'users', 'Togethr', 'Community app with secure OTP sign-in.'),
+    ('togethr', 'tog', 'users', 'Togethr', 'Friends and matches through astrology, numerology and soul bond compatibility.'),
 ]
 
 
@@ -128,6 +193,10 @@ def main():
     head, header, footer = read(SRC, 'partials', 'head.html'), read(SRC, 'partials', 'header.html'), read(SRC, 'partials', 'footer.html')
     for slug, nav, title, desc, name in PAGES:
         body = read(SRC, 'pages', slug + '.html')
+        body = re.sub(r'\{\{apps:([a-z]+)\}\}', lambda m: apps_grid(m.group(1)), body)
+        body = re.sub(r'\{\{play:([a-z-]+)\}\}', lambda m: play_btn(m.group(1)), body)
+        body = re.sub(r'\{\{icon:([a-z-]+)\}\}', lambda m: app_icon(m.group(1), 'appicon appicon--lg'), body)
+        body = body.replace('{{appstrip}}', apps_strip()).replace('{{appcount}}', str(len(APPS))).replace('https://play.google.com/store/apps/dev?id=VAS+Ventures', PLAY_DEV)
         body = body.replace('{{crumbs}}', crumbs(slug, name)).replace('{{more}}', more(slug)).replace('{{portrait}}', portrait())
         hdr = header.replace(f'data-nav="{nav}"', f'data-nav="{nav}" aria-current="page"')
         h = (head.replace('{{title}}', title).replace('{{description}}', desc).replace('{{path}}', url(slug))
